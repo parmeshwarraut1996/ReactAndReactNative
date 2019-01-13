@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import Login from '../components/login';
 import { Card } from '@material-ui/core';
+import Registration from '../components/Registration';
 
 
-class LoginForm extends Component {
+class RegistrationForm extends Component {
 
 
     render() {
         return (
 
             <div className="Form">
-              
-                <Card className="text">
-                    <Login />
+
+                <Card className="textReg">
+                    <Registration/>
                     
                 </Card>
 
@@ -22,4 +22,4 @@ class LoginForm extends Component {
 
     }
 }
-export default LoginForm;
+export default RegistrationForm;

@@ -1,5 +1,8 @@
 import React, { Component } from "react"
-import { Card, TextField, Fab } from "@material-ui/core";
+import { TextField, Fab } from "@material-ui/core";
+//import Toaster from "./Toaster";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 class Login extends Component {
@@ -8,49 +11,58 @@ class Login extends Component {
         this.state = {
             txtusername: "",
             txtpassword: "",
-            btnSubmit: "submit",
+            toast: false,
+
+
         }
+
+
+    }
+
+    onSubmit = event => {
+        toast("clicked on submit !", { position: toast.POSITION.BOTTOM_LEFT });
+       
+        this.setState({
+            toast: true,
+
+
+        })
     }
     render() {
         return (
 
             <div className="text">
-               
-                    <h1
-                        style={{ marginTop: '100px' }}>Login to FundooNotes</h1>
+
+                <h1
+                    style={{ marginTop: '100px' }}>Login to FundooNotes</h1>
 
 
-                    < TextField id="textfiled"
-                        txtusername="username"
-                        label="usename"
-                        type="text"
-                        placeholder="Enter user name"
+                < TextField id="textfiled"
+                    label="usename"
+                    type="text"
+                    placeholder="Enter user name"
 
 
-                    //style={{ marginBottom: '15px', marginTop: '100px', width: ' 200px',paddingLeft:'80px'  }}
+                //style={{ marginBottom: '15px', marginTop: '100px', width: ' 200px',paddingLeft:'80px'  }}
 
-                    />
-                    
-                    <TextField id="textfield"
-                    txtpassword="password"
-                        label="password"
-                        type="text"
-                        placeholder="Enter password"
-                        style={{ marginBottom: '50px' }}
+                />
 
-                    />
-                    <Fab btnSubmit="submit"
-                        variant="extended"
-                        color="primary"
-                        style={{ marginBottom: '100px' }}
-                        onClick={function () {
+                <TextField id="textfield"
+                    label="password"
+                    type="text"
+                    placeholder="Enter password"
+                    style={{ marginBottom: '50px' }}
 
-                        }}
+                />
+                <Fab
+                    variant="extended"
+                    color="primary"
+                    style={{ marginBottom: '100px' }}
+                    onClick={event => this.onSubmit(event)}
 
+                >submit</Fab>
 
-
-                    >submit</Fab>
-                
+                <ToastContainer />
             </div>
 
         );
