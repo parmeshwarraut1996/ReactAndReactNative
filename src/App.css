@@ -37,7 +37,7 @@
   padding: '50px';
 }
 .text{
-  display: flex;
+  margin-top: 40px;
   align-content: space-between;
   padding: 0px 40px 40px 40px;
   flex-direction: column;
@@ -48,6 +48,8 @@
   width: 500px;
   height: 900px;
   margin-left: 100px;
+    padding: '50px';
+
 }
 
 

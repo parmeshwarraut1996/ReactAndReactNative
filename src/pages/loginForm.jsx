@@ -12,7 +12,7 @@ class LoginForm extends Component {
             <div className="Form">
               
                 <Card className="text">
-                    <Login />
+                    <Login props={this.props}/>
                     
                 </Card>
 
