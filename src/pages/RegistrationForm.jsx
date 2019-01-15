@@ -12,6 +12,8 @@ class RegistrationForm extends Component {
             <div className="Form">
 
                 <Card className="textReg">
+                    <img src={require('../assets/register.png')} 
+                    style={{marginTop:'15px'}}/>
                     <Registration/>
                     
                 </Card>

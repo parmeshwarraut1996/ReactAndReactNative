@@ -35,19 +35,19 @@ export default function getData(fname, lname, email, pass, cpass, contact) {
     database.database.ref('/users').push(data);
 }
 export  function checkLogin(username, password) {
-        var check={
+    
+        var arr={
         username: username,
         password: password
         }
-    Firebase.firebase.auth().signInWithEmailAndPassword(username, password).then(() => {
-        console.log("Successfully login");
 
-    })
-        .catch(function (error) {
-            if (error) {
-                console.log(error);
-            }
+Firebase.firebase.auth().signInWithEmailAndPassword(username, password).then(()=>{
+console.log("succefully login");
+
+})
+.catch(function (error) {
+            console.log("Error code",error.code);
+            console.log("error message",error.message);
             return error;
-        })
-
+        });
 }

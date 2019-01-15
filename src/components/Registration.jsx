@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import getData from "../controller/DatabaseController";
 
+
+
 class Registration extends Component {
     constructor() {
         super();
@@ -109,7 +111,7 @@ class Registration extends Component {
  * check if all required information is true 
  */
         if (this.handleValidation()) {
-            getData(this.state.fields["First Name"],this.state.fields["Last Name"],this.state.fields["Email Id"],this.state.fields["Password"],this.state.fields["Confirm Password"],this.state.fields["Contact Number"]);
+          getData(this.state.fields["First Name"],this.state.fields["Last Name"],this.state.fields["Email Id"],this.state.fields["Password"],this.state.fields["Confirm Password"],this.state.fields["Contact Number"]);
             toast("Successfully Register", { position: toast.POSITION.BOTTOM_LEFT });
             
         }
@@ -131,12 +133,12 @@ class Registration extends Component {
     render() {
         return (
             <div>
-                <h1 style={{ marginTop: '100px' }}>Register</h1>
+                <h1 style={{ marginTop: '22px' }}>Register</h1>
                 <div className="text">
 
 
                     <br />
-                    <fieldset>
+                    
                         
                         < TextField id="textfiled"
                             label="First Name"
@@ -215,7 +217,7 @@ class Registration extends Component {
                         >submit</Fab>
                         <br />
                         <ToastContainer />
-                    </fieldset>
+                    
                 </div>
             </div>
         );
