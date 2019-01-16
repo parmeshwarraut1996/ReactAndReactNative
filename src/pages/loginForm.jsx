@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Login from '../components/login';
 import { Card } from '@material-ui/core';
+import {withRouter} from 'react-router-dom'
 
 
 class LoginForm extends Component {
@@ -12,7 +13,8 @@ class LoginForm extends Component {
             <div className="Form">
               
                 <Card className="card">
-                <img src={require('../assets/login.png')}/>
+                <img src={require('../assets/login.png')}
+                    alt="Login"/>
                     <Login props={this.props}/>
                     
                 </Card>
@@ -23,4 +25,4 @@ class LoginForm extends Component {
 
     }
 }
-export default LoginForm;
+export default withRouter(LoginForm);

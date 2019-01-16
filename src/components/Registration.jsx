@@ -3,8 +3,7 @@ import { TextField, Fab } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import getData from "../controller/DatabaseController";
-
-
+import { withRouter } from 'react-router-dom'
 
 class Registration extends Component {
     constructor() {
@@ -18,7 +17,8 @@ class Registration extends Component {
             txtContactNumber: "",
             toast: false,
             fields: {},
-            errors: {}
+            errors: {},
+
         }
     }
 
@@ -81,9 +81,9 @@ class Registration extends Component {
         /**
          * Compare Password and Confirm Password are match or not
          */
-        if(fields["Password"]!==fields["Confirm Password"]){
-            formIsValid=false;
-            errors["Confirm Password"]="password does not match";
+        if (fields["Password"] !== fields["Confirm Password"]) {
+            formIsValid = false;
+            errors["Confirm Password"] = "password does not match";
         }
         //Contact Number validation
         if (!fields["Contact Number"]) {
@@ -99,31 +99,48 @@ class Registration extends Component {
                 errors["Contact Number"] = " enter valid contact number ";
             }
         }
-//set state for display error message
+        //set state for display error message
         this.setState({ errors: errors });
         return formIsValid;
     }
 
     //set event on submit buton
-    onSubmit = event => {
+    onSubmit = async event => {
 
-       /**
- * check if all required information is true 
- */
+        /**
+  * check if all required information is true 
+  */
         if (this.handleValidation()) {
-          getData(this.state.fields["First Name"],this.state.fields["Last Name"],this.state.fields["Email Id"],this.state.fields["Password"],this.state.fields["Confirm Password"],this.state.fields["Contact Number"]);
-            toast("Successfully Register", { position: toast.POSITION.BOTTOM_LEFT });
-            
+            var data = await getData(this.state.fields["First Name"], this.state.fields["Last Name"], this.state.fields["Email Id"], this.state.fields["Password"], this.state.fields["Confirm Password"], this.state.fields["Contact Number"]);
+            if (data) {
+                toast(data.message, { position: toast.POSITION.TOP_CENTER });
+
+            }
+            else {
+                toast("Register Successfully", { position: toast.POSITION.TOP_CENTER });
+                this.props.history.push('/login');
+                this.setState = {
+                    txtFirstName: "",
+                    txtLastName: "",
+                    txtEmailId: "",
+                    txtPassword: "",
+                    txtConfirmPassword: "",
+                    txtContactNumber: "",
+
+                }
+
+            }
+
         }
         else {
             toast("Enter valid info ", { position: toast.POSITION.BOTTOM_LEFT });
         }
     }
     /**
-     * 
-     * @param {define text field} field 
-     * @param { define event} e 
-     */
+    * 
+    * @param {define text field} field 
+    * @param { define event} e 
+    */
 
     handleChange(field, e) {
         let fields = this.state.fields;
@@ -134,94 +151,97 @@ class Registration extends Component {
         return (
             <div>
                 <h1 style={{ marginTop: '22px' }}>Register</h1>
+
                 <div className="text">
 
 
                     <br />
-                    
-                        
-                        < TextField id="textfiled"
-                            label="First Name"
-                            type="text"
-                            placeholder="Enter First Name"
-                            onChange={this.handleChange.bind(this, "First Name")}
-                            value={this.state.fields["First Name"]}
-                            error={this.state.errors["First Name"]}
-                            helperText={this.state.errors["First Name"]}
-                        />
 
 
-                        <br />
-                        < TextField id="textfiled"
-                            label="Last Name"
-                            type="text"
-                            placeholder="Enter Last Name"
-                            onChange={this.handleChange.bind(this, "Last Name")}
-                            value={this.state.fields["Last Name"]}
-                            error={this.state.errors["Last Name"]}
-                            helperText={this.state.errors["Last Name"]} />
+                    < TextField id="textfiled"
+                        label="First Name"
+                        type="text"
+                        placeholder="Enter First Name"
+                        onChange={this.handleChange.bind(this, "First Name")}
+                        value={this.state.fields["First Name"]}
+                        error={this.state.errors["First Name"]}
+                        helperText={this.state.errors["First Name"]}
+                    />
+
+
+                    <br />
+                    < TextField id="textfiled"
+                        label="Last Name"
+                        type="text"
+                        placeholder="Enter Last Name"
+                        onChange={this.handleChange.bind(this, "Last Name")}
+                        value={this.state.fields["Last Name"]}
+                        error={this.state.errors["Last Name"]}
+                        helperText={this.state.errors["Last Name"]} />
 
 
 
-                        <br />
+                    <br />
 
 
-                        < TextField id="textfiled"
-                            label="Email Id"
-                            type="text"
-                            placeholder="Enter Email id "
-                            onChange={this.handleChange.bind(this, "Email Id")}
-                            value={this.state.fields["email"]}
-                            error={this.state.errors["Email Id"]}
-                            helperText={this.state.errors["Email Id"]} />
+                    < TextField id="textfiled"
+                        label="Email Id"
+                        type="text"
+                        placeholder="Enter Email id "
+                        onChange={this.handleChange.bind(this, "Email Id")}
+                        value={this.state.fields["email"]}
+                        error={this.state.errors["Email Id"]}
+                        helperText={this.state.errors["Email Id"]} />
 
-                        <br />
+                    <br />
 
-                        < TextField id="textfiled"
-                            label="Password"
-                            type="password"
-                            placeholder="Enter password"
-                            onChange={this.handleChange.bind(this, "Password")}
-                            value={this.state.fields["Password"]}
-                            error={this.state.errors["Password"]}
-                            helperText={this.state.errors["Password"]} />
-                        <br />
+                    < TextField id="textfiled"
+                        label="Password"
+                        type="password"
+                        placeholder="Enter password"
+                        onChange={this.handleChange.bind(this, "Password")}
+                        value={this.state.fields["Password"]}
+                        error={this.state.errors["Password"]}
+                        helperText={this.state.errors["Password"]} />
+                    <br />
 
-                        < TextField id="textfiled"
-                            label="Confirm Password"
-                            type="password"
-                            placeholder="Enter Confirm Password"
-                            onChange={this.handleChange.bind(this, "Confirm Password")}
-                            value={this.state.fields["Confirm Password"]}
-                            error={this.state.errors["Confirm Password"]}
-                            helperText={this.state.errors["Confirm Password"]} />
-                        <br />
+                    < TextField id="textfiled"
+                        label="Confirm Password"
+                        type="password"
+                        placeholder="Enter Confirm Password"
+                        onChange={this.handleChange.bind(this, "Confirm Password")}
+                        value={this.state.fields["Confirm Password"]}
+                        error={this.state.errors["Confirm Password"]}
+                        helperText={this.state.errors["Confirm Password"]} />
+                    <br />
 
-                        < TextField id="textfiled"
-                            label="Contact Number"
-                            type="text"
-                            style={{ marginBottom: '50px' }}
-                            placeholder="Enter Contact Number"
-                            onChange={this.handleChange.bind(this, "Contact Number")}
-                            value={this.state.fields["Contact Number"]}
-                            error={this.state.errors["Contact Number"]}
-                            helperText={this.state.errors["Contact Number"]} />
+                    < TextField id="textfiled"
+                        label="Contact Number"
+                        type="text"
+                        style={{ marginBottom: '50px' }}
+                        placeholder="Enter Contact Number"
+                        onChange={this.handleChange.bind(this, "Contact Number")}
+                        value={this.state.fields["Contact Number"]}
+                        error={this.state.errors["Contact Number"]}
+                        helperText={this.state.errors["Contact Number"]} />
 
-                        <br />
-                        <Fab
-                            variant="extended"
-                            color="primary"
-                            style={{ marginBottom: '50px' }}
-                            onClick={event => this.onSubmit(event)}
+                    <br />
+                    <Fab
+                        variant="extended"
+                        color="primary"
+                        style={{ marginBottom: '50px' }}
+                        onClick={event => this.onSubmit(event)}
 
-                        >submit</Fab>
-                        <br />
-                        <ToastContainer />
-                    
+
+                    >submit</Fab>
+
+                    <br />
+                    <ToastContainer />
+
                 </div>
             </div>
         );
     }
 
 }
-export default Registration;
+export default withRouter(Registration);

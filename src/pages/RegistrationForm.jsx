@@ -13,7 +13,8 @@ class RegistrationForm extends Component {
 
                 <Card className="textReg">
                     <img src={require('../assets/register.png')} 
-                    style={{marginTop:'15px'}}/>
+                    style={{marginTop:'15px'}}
+                    alt="Registration"/>
                     <Registration/>
                     
                 </Card>

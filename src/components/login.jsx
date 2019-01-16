@@ -1,11 +1,14 @@
 import Firebase from '../Firebase'
 import React, { Component } from "react"
-import { TextField, Fab, IconButton } from "@material-ui/core";
+import { TextField, Fab } from "@material-ui/core";
 //import Toaster from "./Toaster";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom'
-var checkLogin = require('../controller/DatabaseController');
+import { checkLogin } from '../controller/DatabaseController';
+import { withRouter } from 'react-router-dom'
+
+// var checkLogin = require('../controller/DatabaseController');
 
 
 
@@ -23,17 +26,19 @@ class Login extends Component {
 
         }
 
-           }
+    }
     googleSignIn = event => {
-         var provider = new Firebase.firebase.auth.GoogleAuthProvider;
+        var provider = new Firebase.firebase.auth.GoogleAuthProvider();
         Firebase.firebase.auth().signInWithPopup(provider).then(function (result) {
-            console.log(result);
+            // console.log(result);
 
-            console.log("Successful google account linked ");
+            toast("Successfully loged in with Google", { position: toast.POSITION.TOP_CENTER });
+            //  window.location = 'http://localhost:3000/Dashboard';
+
 
         }).catch(function (err) {
             console.log(err);
-            console.log("failed to login");
+            toast("Login failed", { position: toast.POSITION.TOP_CENTER });
 
 
         })
@@ -60,10 +65,17 @@ class Login extends Component {
 
 
     }
-    onSubmit = event => {
+    onSubmit = async event => {
         if (this.handleValidation()) {
-            checkLogin.checkLogin(this.state.fields["username"], this.state.fields["password"]);
-            toast("Successfully Login ", { position: toast.POSITION.BOTTOM_LEFT });
+            var a = await checkLogin(this.state.fields["username"], this.state.fields["password"]);
+            if (a) {
+                toast(a.message, { position: toast.POSITION.BOTTOM_LEFT });
+
+            } else {
+                toast("Login Successful", { position: toast.POSITION.TOP_CENTER });
+                this.props.history.push('/dashboard');
+            }
+
         }
 
         this.setState({
@@ -120,9 +132,13 @@ class Login extends Component {
                         onClick={event => this.onSubmit(event)}
 
                     >Login</Fab>
-                    <br/>
-                    <Fab onClick={(event) => this.googleSignIn(event)} >
-                        <img src={require('../assets/download1.png')} />
+                    <br />
+                    <Fab
+                        variant="extended"
+                        color="primary"
+                        onClick={(event) => this.googleSignIn(event)} >
+                        <img src={require('../assets/download1.png')}
+                            alt="" />
                     </Fab>
 
 
@@ -130,7 +146,7 @@ class Login extends Component {
                     <br />
 
                     <ToastContainer />
-                    
+
                     <Link to='/' > Forgotten password? </Link>
                     <br />
                     <Link to='/Registration' > Click to Registration </Link>
@@ -142,4 +158,4 @@ class Login extends Component {
     }
 
 }
-export default Login;
+export default withRouter(Login);
