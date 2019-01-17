@@ -7,19 +7,19 @@ import RegistrationForm from './pages/RegistrationForm';
 import DashboardForm from './pages/DashboardForm';
 
 
+
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Router>
           <div>
-           
+
             <Route path="/login" component={LoginForm} />
             <Route path="/registration" component={RegistrationForm} />
-            <Route path="/dashboard" component={DashboardForm}/>
+            <Route path="/dashboard1" component={DashboardForm} />
            
-
-
 
           </div>
         </Router>

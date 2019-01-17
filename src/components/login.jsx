@@ -1,17 +1,11 @@
 import Firebase from '../Firebase'
 import React, { Component } from "react"
 import { TextField, Fab } from "@material-ui/core";
-//import Toaster from "./Toaster";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom'
 import { checkLogin } from '../controller/DatabaseController';
 import { withRouter } from 'react-router-dom'
-
-// var checkLogin = require('../controller/DatabaseController');
-
-
-
 
 class Login extends Component {
     constructor() {
@@ -27,15 +21,21 @@ class Login extends Component {
         }
 
     }
+    /**
+     * External google sign in method
+     */
     googleSignIn = event => {
         var provider = new Firebase.firebase.auth.GoogleAuthProvider();
         Firebase.firebase.auth().signInWithPopup(provider).then(function (result) {
-            // console.log(result);
+            /**
+             * if login succcessful 
+             */
 
             toast("Successfully loged in with Google", { position: toast.POSITION.TOP_CENTER });
-            //  window.location = 'http://localhost:3000/Dashboard';
 
-
+            /**
+             * handle event if login unsuccessful
+             */
         }).catch(function (err) {
             console.log(err);
             toast("Login failed", { position: toast.POSITION.TOP_CENTER });
@@ -44,16 +44,24 @@ class Login extends Component {
         })
 
     }
+    /**
+     * validation of usename and password field
+     */
 
     handleValidation() {
         let fields = this.state.fields;
         let errors = {};
         let formIsValid = true;
-
+        /**
+         * usename not empty
+         */
         if (!fields["username"]) {
             formIsValid = false;
             errors["username"] = "* required username";
         }
+        /**
+         * password field does not empty
+         */
         if (!fields["password"]) {
             formIsValid = false;
             errors["password"] = "* required password";
@@ -65,15 +73,24 @@ class Login extends Component {
 
 
     }
+    /**
+     * check username and password 
+     */
     onSubmit = async event => {
         if (this.handleValidation()) {
             var a = await checkLogin(this.state.fields["username"], this.state.fields["password"]);
             if (a) {
+                /**
+                 * if password or mail is incorect
+                 */
                 toast(a.message, { position: toast.POSITION.BOTTOM_LEFT });
 
             } else {
+                /**
+                 * if password is correct
+                 */
                 toast("Login Successful", { position: toast.POSITION.TOP_CENTER });
-                this.props.history.push('/dashboard');
+                this.props.history.push('/dashbord1');
             }
 
         }
@@ -84,6 +101,11 @@ class Login extends Component {
 
         });
     }
+    /**
+     * 
+     * @param {define componenets in form} field 
+     * @param {define event} e 
+     */
     handleChange(field, e) {
         let fields = this.state.fields;
         fields[field] = e.target.value;

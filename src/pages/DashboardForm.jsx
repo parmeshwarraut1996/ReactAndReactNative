@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
-import Dashboard from '../components/Dashboard';
+import MyHeader from '../components/MyHeader';
+import {withRouter} from "react-router-dom"
 
-
-
-class DashboardForm extends Component{
-    render(){
-        return(
-            <div className="Form">
-            <Dashboard/>
+class DashboardForm extends Component {
+    render() {
+        console.log("in dashboard");
+        
+        return (
+            <div className="base">
+                
+                
+                <MyHeader />
+               
             </div>
         );
     }
 }
-export default DashboardForm;
+export default withRouter(DashboardForm);

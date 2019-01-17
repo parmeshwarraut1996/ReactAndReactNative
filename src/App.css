@@ -68,6 +68,52 @@
 .App-link {
   color: #61dafb;
 }
+.base{
+  margin-top: 40px;
+ 
+}
+.menuAndlogo{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+  
+}
+.nameAndlogo{
+  display: flex;
+  flex-direction: row;
+  
+}
+/* .sear{
+display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-color:black;
+  border-style:outset;
+  border: thin;
+  border-width: thin;
+  border-radius: 7px;
+  align-content: center; 
+
+}*/
+.search{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-color: rgba(202,202,192,1.56);
+  border-style: outset;
+  border-width: thin;
+  border-radius: 7px;
+  align-content: center;
+  inline-size: 500px;
+}
+ 
+
+
+.appicons{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
 
 @keyframes App-logo-spin {
   from {
