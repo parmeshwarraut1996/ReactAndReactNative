@@ -27,11 +27,22 @@ class Login extends Component {
     googleSignIn = event => {
         var provider = new Firebase.firebase.auth.GoogleAuthProvider();
         Firebase.firebase.auth().signInWithPopup(provider).then(function (result) {
+            if(result.credential){
+                var token=result.user.uid;
+                var email=result.user.email;
+                localStorage.setItem("userKey",token);
+                localStorage.setItem("Email",email);
+
+
+                
+            }
             /**
              * if login succcessful 
              */
-
+            window.location ="http://localhost:3000/dashboard1";
+            //this.props.history.push('/dashboard1');
             toast("Successfully loged in with Google", { position: toast.POSITION.TOP_CENTER });
+
 
             /**
              * handle event if login unsuccessful
@@ -90,7 +101,7 @@ class Login extends Component {
                  * if password is correct
                  */
                 toast("Login Successful", { position: toast.POSITION.TOP_CENTER });
-                this.props.history.push('/dashbord1');
+                this.props.history.push('/dashboard1');
             }
 
         }

@@ -60,3 +60,6 @@ export async function checkLogin(username, password) {
     return data;
 
 }
+export function getUser(usename){
+   
+}

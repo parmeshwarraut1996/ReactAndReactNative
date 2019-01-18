@@ -106,7 +106,33 @@ display: flex;
   align-content: center;
   inline-size: 500px;
 }
+.list{
+  width:250px;
+}
+.labels{
+  flex-direction: column;
+  display: flex;
  
+}
+.lbl{
+  align-content: space-around;
+  display: flex;
+}
+.notes{
+list-style: none;
+margin-top: 0;
+margin-bottom: 0;
+padding: 8px 0;
+
+}
+ .paper{
+   margin-top: 13px;
+
+ }
+ .Sign{
+   display: flex;
+   flex-direction: column;
+ }
 
 
 .appicons{

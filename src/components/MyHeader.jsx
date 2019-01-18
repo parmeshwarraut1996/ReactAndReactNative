@@ -2,6 +2,7 @@ import React, { Component } from "react"
 
 import {Tooltip, AppBar, Toolbar, MuiThemeProvider, createMuiTheme, InputBase, Typography, IconButton } from "@material-ui/core";
 import SideMenu from "./SideDrawer";
+import AccountComponent from "./Account";
 
 const theme = createMuiTheme({
     overrides: {
@@ -94,12 +95,17 @@ class MyHeader extends Component {
                                     </IconButton>
                                 </div>
                             </div>
+                                <div >
+                                <AccountComponent />
+                                </div>
+                            
 
 
-
+                           
                         </Toolbar>
                     </AppBar>
                     <SideMenu sideOpen={this.state.open} />
+                  
                 </div>
             </MuiThemeProvider>
             
