@@ -35,17 +35,26 @@ class SideMenu extends Component {
                 >
                     <List className="list">
                     <div className="notes">
+                    
                         <MenuItem>
+                                <div>
                             <img src={require('../assets/notes.svg')}
                                 alt="" />
+                                </div>
+                                <div className="sidefont">
                             Notes
+                            </div>
                </MenuItem>
                         </div>
                         <div>
                         <MenuItem>
+                        <div>
                             <img src={require('../assets/reminder.svg')}
                                 alt="" />
+                                </div>
+                                <div className="sidefont">
                             Reminders
+                            </div>
                         </MenuItem>
 
                         <Divider></Divider>
@@ -57,22 +66,33 @@ class SideMenu extends Component {
                             </label>
                             </div>
                         <MenuItem>
+                        <div>
                             <img src={require('../assets/editlabes.svg')}
                                 alt="" />
-                              
+                                </div>
+                              <div className="sidefont">
                             Edit labels
+                            </div>
                         </MenuItem>
                         </div>
                         <Divider></Divider>
                         <MenuItem>
+                        <div>
                             <img src={require('../assets/archive.svg')}
                                 alt="" />
+                            </div>
+                            <div className="sidefont">
                             Archive
+                            </div>
                         </MenuItem>
                         <MenuItem>
+                        <div>
                             <img src={require('../assets/trash.svg')}
                                 alt="" />
+                            </div>
+                            <div className="sidefont">
                             Trash
+                            </div>
                         </MenuItem>
                     </List>
                 </SwipeableDrawer>

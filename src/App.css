@@ -106,8 +106,27 @@ display: flex;
   align-content: center;
   inline-size: 500px;
 }
+.notesCard{
+  margin-left:450px;
+  height: 40px;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 7px;
+  inline-size: 500px;
+  align-content: center;
+ 
+}
+.sidefont{
+margin-left: 13px;
+font-size: 20px;
+}
 .list{
   width:250px;
+}
+.show{
+  width: 500px;
+  margin-top: 50px;
 }
 .labels{
   flex-direction: column;
@@ -133,7 +152,9 @@ padding: 8px 0;
    display: flex;
    flex-direction: column;
  }
-
+.cardlist{
+  margin-top: 100px;
+}
 
 .appicons{
 display: flex;
