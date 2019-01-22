@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Card, InputBase } from '@material-ui/core';
-
+import { Card, InputBase, IconButton } from '@material-ui/core';
+var archiveFile = require('./dashboard/archive');
 class ShowCards extends Component {
 
     constructor() {
@@ -11,20 +11,44 @@ class ShowCards extends Component {
     }
     render() {
         return (
-            <div>
-                <Card className="cardlist">
+
+            <Card className="cardlist">
+                <div className="addNotes">
+                    <div className="titleAndPin">
+                        <div>
+                            <InputBase className="titleNote"
+                                placeholder="  Title"
+
+                            >
+
+                            </InputBase>
+                        </div>
+                        <div>
+                            <IconButton>
+                                <img src={require('../assets/pin.svg')}
+                                    alt="" />
+                            </IconButton>
+                        </div>
+                    </div>
+                    <div className='archive'>
                     <div>
-                        <InputBase className="takeNote"
-                        placeholder="title"
+                        <InputBase
+                            placeholder="  Take a note..."
 
                         >
-                            <img src={require('../assets/pin.svg')}
-                                alt="" />
+
 
                         </InputBase>
                     </div>
-                </Card>
-            </div>
+
+                    <div>
+                        <archiveFile />
+
+                    </div>
+                </div>
+                </div>
+            </Card>
+
         );
     }
 }
