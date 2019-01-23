@@ -32,15 +32,15 @@ class Notes extends Component {
                     </InputBase>
                     <div>
                         <IconButton>
-                            <img src={require('../assets/checkbox.svg')}
+                            <img src={require('../../assets/checkbox.svg')}
                                 alt="" />
                         </IconButton>
                         <IconButton>
-                            <img src={require('../assets/drawing.svg')}
+                            <img src={require('../../assets/drawing.svg')}
                                 alt="" />
                         </IconButton>
                         <IconButton>
-                            <img src={require('../assets/image.svg')}
+                            <img src={require('../../assets/image.svg')}
                                 alt="" />
                         </IconButton>
                     </div>

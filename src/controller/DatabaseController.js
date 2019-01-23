@@ -69,17 +69,24 @@ export function getUser(usename) {
         snap.forEach(function(snap){
             
             var email=snap.child('Email_id').val();
+            var fname=snap.child('FirstName').val();
+            var lname=snap.child('LastName').val();
             var key=snap.key;
 
             localStorage.setItem("Email",email);
             localStorage.setItem("userKey",key);
+            localStorage.setItem("FirstName",fname);
+            localStorage.setItem("LastName",lname);
+
             console.log("Key---",key);
             console.log("Email-------",email);
+            console.log("Name",fname);
             
-
             
+   
         })
     });
+   
     
     console.log("user");
     

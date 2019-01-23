@@ -17,6 +17,10 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.passswordForm{
+  display: flex;
+  justify-content: center
+}
 .Form{
   display: flex;
   justify-content: center;
@@ -35,6 +39,17 @@
 
 #textfield{
   padding: '50px';
+}
+.passwordcard{
+  margin-top: 50px;
+  align-content: space-between;
+  padding: 0px 20px 20px 20px;
+  flex-direction: column;
+  height: 300px;
+  width: 400px;
+  margin-left: 400px;
+  margin-bottom: 10px;
+  
 }
 .card{
   margin-top: 10px;
@@ -135,11 +150,19 @@ inline-size: 500px
   align-content: space-around;
   display: flex;
 }
+#roundbutton{
+background-color:#ffe8a4;
+border-top-right-radius: 25px;
+border-bottom-right-radius: 25px;
+
+}
 .notes{
 list-style: none;
 margin-top: 0;
 margin-bottom: 0;
-padding: 8px 0;
+padding: 10px 0;
+background: transparent;
+
 
 }
  .paper{
@@ -152,6 +175,8 @@ padding: 8px 0;
  }
 .cardlist{
   margin-top: 100px;
+  display: flex;
+  flex-direction: column;
 }
 
 .appicons{
@@ -184,8 +209,21 @@ justify-content: space-between;
 }
 .archive{
   display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.CardToolbar{
+ flex-direction: row;
+ justify-content: flex-start;
+ margin-left: -20px;
+}
+.toolbarAndClose{
+  display: flex;
+  flex-direction: row;
+}
+.closeButton{
+  margin-top: 17px;
+  margin-left: 82px;
 }
 @keyframes App-logo-spin {
   from {

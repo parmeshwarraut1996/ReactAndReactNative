@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import MyHeader from '../components/MyHeader';
+
 import {withRouter} from "react-router-dom"
-import Notes from '../components/Notes';
+import MyHeader from '../components/dashboard/MyHeader';
+import Notes from '../components/dashboard/Notes';
+
 
 
 class DashboardForm extends Component {
@@ -12,8 +14,9 @@ class DashboardForm extends Component {
             <div className="base">
                 
                 
-                <MyHeader />
+              <MyHeader/>
             <Notes/>
+            
             
             </div>
         );

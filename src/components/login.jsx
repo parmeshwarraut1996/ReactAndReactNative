@@ -79,7 +79,9 @@ class Login extends Component {
      * check username and password 
      */
     onSubmit = async event => {
-        getUser(this.state.fields["username"]);
+      getUser(this.state.fields["username"]);
+        
+
 
 
         if (this.handleValidation()) {
@@ -158,7 +160,7 @@ class Login extends Component {
                     </Fab>
                     <br />
                     <ToastContainer />
-                    <Link to='/' > Forgotten password? </Link>
+                    <Link to='/ForgetPassword ' > Forgotten password? </Link>
                     <br />
                     <Link to='/Registration' > Click to Registration </Link>
                 </div>

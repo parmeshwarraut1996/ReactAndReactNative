@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { IconButton } from '@material-ui/core';
 
 class MoreComponent extends Component {
     constructor() {
@@ -11,7 +12,7 @@ class MoreComponent extends Component {
         return (
             <div>
                 <IconButton>
-                    <img src={require('../assets/more.svg')}
+                    <img src={require('../../assets/more.svg')}
                         alt="" />
                 </IconButton>
             </div>

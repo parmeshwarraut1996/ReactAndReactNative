@@ -44,13 +44,13 @@ class MyHeader extends Component {
                             <Tooltip title="main menu">
                             
                             <IconButton onClick={()=>this.handleDrawer()}>
-                                <img src={require('../assets/menu.svg')}
+                                <img src={require('../../assets/menu.svg')}
                                     alt=""
                                      />
                                 </IconButton>
                                 </Tooltip>
                                 <div className="nameAndlogo">
-                                    <img src={require('../assets/keep.png')}
+                                    <img src={require('../../assets/keep.png')}
                                         alt="" />
                                     <Typography color="default"
                                         variant='h6'>
@@ -64,7 +64,7 @@ class MyHeader extends Component {
                                     id='searchButton'
                                     color='white'
                                 >
-                                    <img src={require('../assets/searchlogo.svg')}
+                                    <img src={require('../../assets/searchlogo.svg')}
                                         alt="" />
                                 </IconButton>
 
@@ -78,19 +78,19 @@ class MyHeader extends Component {
                             <div className="appicons">
                                 <div >
                                     <IconButton >
-                                        <img src={require('../assets/refresh.svg')}
+                                        <img src={require('../../assets/refresh.svg')}
                                             alt="" />
                                     </IconButton>
                                 </div>
                                 <div >
                                     <IconButton >
-                                        <img src={require('../assets/grid.svg')}
+                                        <img src={require('../../assets/grid.svg')}
                                             alt="" />
                                     </IconButton>
                                 </div>
                                 <div >
                                     <IconButton >
-                                        <img src={require('../assets/setting.svg')}
+                                        <img src={require('../../assets/setting.svg')}
                                             alt="" />
                                     </IconButton>
                                 </div>

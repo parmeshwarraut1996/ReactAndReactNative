@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { IconButton } from '@material-ui/core';
 
 class CollaboratorComponent extends Component {
     constructor() {
@@ -11,7 +12,7 @@ class CollaboratorComponent extends Component {
         return (
             <div>
                 <IconButton>
-                    <img src={require('../assets/Collaborator.svg')}
+                    <img src={require('../../assets/collaborator.svg')}
                         alt="" />
                 </IconButton>
             </div>

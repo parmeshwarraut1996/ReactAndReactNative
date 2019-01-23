@@ -5,6 +5,7 @@ import './App.css';
 import LoginForm from './pages/loginForm';
 import RegistrationForm from './pages/RegistrationForm';
 import DashboardForm from './pages/DashboardForm';
+import ForgetPaswordForm from './pages/forgetPaswordForm';
 
 
 
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/login" component={LoginForm} />
             <Route path="/registration" component={RegistrationForm} />
             <Route path="/dashboard" component={DashboardForm} />
+            <Route path="/forgetPassword" component={ForgetPaswordForm}/>
            
 
           </div>
