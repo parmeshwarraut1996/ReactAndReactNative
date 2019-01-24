@@ -68,9 +68,9 @@ class ShowCards extends Component {
 
                     </Toolbar>
                     <div className="closeButton">
-                        <Button 
-                        onClick>
-                            Close
+                        <Button
+                            onClick>
+                            CLOSE
                          </Button>
 
                     </div>

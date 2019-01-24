@@ -8,6 +8,7 @@ const theme = createMuiTheme({
                 left: 0,
                 top: '65px',
                 right: 'auto',
+                
             }
         }
     }

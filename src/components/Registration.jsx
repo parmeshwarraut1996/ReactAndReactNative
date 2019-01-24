@@ -101,6 +101,8 @@ class Registration extends Component {
         }
         //set state for display error message
         this.setState({ errors: errors });
+        console.log("validation",formIsValid);
+        
         return formIsValid;
     }
 

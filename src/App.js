@@ -10,6 +10,7 @@ import ForgetPaswordForm from './pages/forgetPaswordForm';
 
 
 
+
 class App extends Component {
   render() {
     return (
@@ -21,6 +22,7 @@ class App extends Component {
             <Route path="/registration" component={RegistrationForm} />
             <Route path="/dashboard" component={DashboardForm} />
             <Route path="/forgetPassword" component={ForgetPaswordForm}/>
+           
            
 
           </div>

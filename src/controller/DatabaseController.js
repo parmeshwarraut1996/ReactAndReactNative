@@ -2,6 +2,8 @@ import database from '../Firebase'
 import Firebase from '../Firebase';
 
 
+
+
 export default async function getData(fname, lname, email, pass, cpass, contact) {
     var data = {
         FirstName: fname,
@@ -90,6 +92,43 @@ export function getUser(usename) {
     
     console.log("user");
     
+    return usename;
+
+}
+export function resetPass(username){
+
+   
+
+    var arr={
+        username:username
+    }
+    console.log(arr);
     
+    let data = Firebase.database.ref("users").orderByChild("Email_Id").equalTo(username);
+
+    if(data){
+        var auth = Firebase.firebase.auth();
+        var emailAddress = username;
+
+        var x=auth.sendPasswordResetEmail(emailAddress).then(function () {
+console.log("assddd",x);
+
+            // Email sent.
+        }).catch(function (error) {
+            console.log("Reset password---",error.message);
+            data=error;
+        return error;
+        });
+
+    }else{
+        console.log("aaassdadf"+data);
+        
+return data;
+    }
+
+   
+    return data;
+    
+
 
 }
