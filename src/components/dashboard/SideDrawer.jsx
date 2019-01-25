@@ -8,7 +8,7 @@ const theme = createMuiTheme({
                 left: 0,
                 top: '65px',
                 right: 'auto',
-                
+
             }
         }
     }
@@ -17,12 +17,94 @@ const theme = createMuiTheme({
 class SideMenu extends Component {
     constructor() {
         super();
-        this.state = {
-            open: false
+        this.state = ({
+            
+            notes: false,
+            reminder: false,
+            editLabel: false,
+            archive: false,
+            trash: false,
+            open: false,
 
-        }
+
+        })
+        //this.openNotes=this.openNotes.bind(this);
+
     }
+
+
+     openNotes() {
+         this.setState({
+            notes:true,
+            reminder:false,
+            editLabel:false,
+            archive:false,
+            trash:false,
+
+        })
+        console.log("notes", this.state.notes);
+
+
+
+    }
+
+    openReminder() {
+        this.setState({
+            notes: false,
+            reminder: true,
+            editLabel: false,
+            archive: false,
+            trash: false,
+        })
+
+        console.log("reminder", this.state.reminder);
+
+    }
+    openEditLabel() {
+        this.setState({
+            notes: false,
+            reminder: false,
+            editLabel: true,
+            archive: false,
+            trash: false,
+        })
+
+        console.log("editLabel", this.state.editLabel);
+
+    }
+    openArchive() {
+        this.setState({
+            notes: false,
+            reminder: false,
+            editLabel: false,
+            archive: true,
+            trash: false,
+        })
+        console.log("archive", this.state.archive);
+
+
+    }
+    openTrash() {
+        this.setState({
+            notes: false,
+            reminder: false,
+            editLabel: false,
+            archive: false,
+            trash: true,
+        })
+
+        console.log("trash", this.state.trash);
+
+    }
+
     render() {
+        let n = this.state.notes ? 'roundbutton' : 'menu'
+        let r = this.state.reminder ? 'roundbutton' : 'menu';
+        let e = this.state.editLabel ? 'roundbutton' : 'menu';
+        let a = this.state.archive ? 'roundbutton' : 'menu';
+        let t = this.state.trash ? 'roundbutton' : 'menu';
+
+
         return (
             <MuiThemeProvider theme={
                 theme
@@ -35,10 +117,11 @@ class SideMenu extends Component {
                     }
                 >
                     <List className="list">
-                        <div className="notes">
+                        <div className="note">
 
-                            <MenuItem id="roundbutton">
-                                <div>
+                            <MenuItem id={n}
+                                onClick={(event) => this.openNotes(event)}>
+                                <div >
                                     <img src={require('../../assets/notes.svg')}
                                         alt="" />
                                 </div>
@@ -48,7 +131,8 @@ class SideMenu extends Component {
                             </MenuItem>
                         </div>
                         <div>
-                            <MenuItem id="roundbutton">
+                            <MenuItem id={r}
+                                onClick={(event) => this.openReminder(event)}>
                                 <div>
                                     <img src={require('../../assets/reminder.svg')}
                                         alt="" />
@@ -66,7 +150,8 @@ class SideMenu extends Component {
                                     LABELS
                             </label>
                             </div>
-                            <MenuItem id="roundbutton">
+                            <MenuItem id={e}
+                                onClick={(event) => this.openEditLabel(event)}>
                                 <div>
                                     <img src={require('../../assets/editlabes.svg')}
                                         alt="" />
@@ -77,8 +162,9 @@ class SideMenu extends Component {
                             </MenuItem >
                         </div>
                         <Divider></Divider>
-                        <div className="notes">
-                            <MenuItem id="roundbutton">
+                        <div className="note">
+                            <MenuItem id={a}
+                                onClick={(event) => this.openArchive(event)}>
                                 <div>
                                     <img src={require('../../assets/archive.svg')}
                                         alt="" />
@@ -86,22 +172,23 @@ class SideMenu extends Component {
                                 <div className="sidefont">
                                     Archive
                                </div>
-                        </MenuItem>
-                         </div>
-                            <MenuItem id="roundbutton">
-                                <div>
-                                    <img src={require('../../assets/trash.svg')}
-                                        alt="" />
-                                </div>
-                                <div className="sidefont">
-                                    Trash
-                            </div>
                             </MenuItem>
+                        </div>
+                        <MenuItem id={t} onClick={(event) => this.openTrash(event)}>
+
+                            <div>
+                                <img src={require('../../assets/trash.svg')}
+                                    alt="" />
+                            </div>
+                            <div className="sidefont">
+                                Trash
+                            </div>
+                        </MenuItem>
                     </List>
                 </SwipeableDrawer>
             </MuiThemeProvider>
-                );
-            }
-        
-        }
+        );
+    }
+
+}
 export default SideMenu;

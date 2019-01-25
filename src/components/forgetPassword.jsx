@@ -4,7 +4,7 @@ import { Fab, TextField, MuiThemeProvider, createMuiTheme } from '@material-ui/c
 //import { Card } from '@material-ui/core';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { resetPass, getUser } from '../controller/DatabaseController';
+import { resetPass } from '../controller/DatabaseController';
 
 const theme = createMuiTheme({
     overrides: {
@@ -66,28 +66,26 @@ class ForgetPassword extends Component {
         return formIsValid;
     }
     resetPassword() {
-        //getUser(this.state.fields["username"]);
-        var b=getUser(this.state.fields["txtEmail"]);
-        console.log("bbb",b);
-        
+                      
         if (this.handleValidation()) {
             console.log("in reset password");
             
-            var a=  resetPass(b);
+            var a = resetPass(this.state.fields["txtEmail"]);
             console.log("aaaaa",a);
             
-            if (b===false) {
+            if (a) {
                 
-                toast("Email is not registered", { position: toast.POSITION.TOP_CENTER })
+                
+                toast("Password reset link sent to your registered mail account", { position: toast.POSITION.TOP_CENTER })
+                this.props.history.push('/login');
 
-                
                 
 
             }
             else {
-                toast("Password reset link sent to your registered mail account", { position: toast.POSITION.TOP_CENTER })
                 
-
+                
+                toast("Email is not registered", { position: toast.POSITION.TOP_CENTER })
             }
         }
         

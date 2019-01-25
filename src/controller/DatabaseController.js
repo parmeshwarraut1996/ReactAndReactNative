@@ -62,10 +62,10 @@ export async function checkLogin(username, password) {
     return data;
 
 }
-export function getUser(usename) {
+export function getUser(username) {
     
 
-    Firebase.database.ref('users').orderByChild('Email_id').equalTo(usename).on("value",snap=>{
+    Firebase.database.ref('users').orderByChild('Email_id').equalTo(username).on("value",snap=>{
        
         
         snap.forEach(function(snap){
@@ -90,10 +90,7 @@ export function getUser(usename) {
     });
    
     
-    console.log("user");
     
-    return usename;
-
 }
 export function resetPass(username){
 
@@ -104,7 +101,9 @@ export function resetPass(username){
     }
     console.log(arr);
     
-    let data = Firebase.database.ref("users").orderByChild("Email_Id").equalTo(username);
+    let data = Firebase.database.ref("users").orderByChild("Email_Id");
+    console.log('data-',data);
+    
 
     if(data){
         var auth = Firebase.firebase.auth();

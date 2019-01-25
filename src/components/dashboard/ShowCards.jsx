@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, InputBase, IconButton, Toolbar, Button } from '@material-ui/core';
+import { Card, InputBase, IconButton, Toolbar, Button} from '@material-ui/core';
 import ArchiveComponent from './archive';
 import ColorComponent from './color';
 import CollaboratorComponent from './collaborator';
@@ -12,6 +12,7 @@ class ShowCards extends Component {
     constructor() {
         super();
         this.state = {
+            nextLine:true
 
         }
     }
@@ -23,7 +24,7 @@ class ShowCards extends Component {
                 <div className="titleAndPin">
                     <div>
                         <InputBase className="titleNote"
-                            placeholder="  Title"
+                            placeholder="Title"
 
                         >
 
@@ -36,14 +37,14 @@ class ShowCards extends Component {
                         </IconButton>
                     </div>
                 </div>
-                <div className='archive'>
-
-                    <InputBase
-                        placeholder="  Take a note..."
-                    >
+                <div className="inp">
+                    <InputBase className="in"
+                    type={File}
+                    placeholder="Take a note..."
+                    multiline={this.state.nextLine}>
                     </InputBase>
                 </div>
-
+                   
                 <div className="toolbarAndClose">
                     <Toolbar className="CardToolbar">
                         <div>

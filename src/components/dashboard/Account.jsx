@@ -52,7 +52,7 @@ class AccountComponent extends Component {
 
     render() {
         var email = localStorage.getItem("Email");
-        var firstLetter = email.substring(0, 1);
+       var firstLetter = email.substring(0, 1);
         var upperCaseLetter = firstLetter.toLocaleUpperCase();
         return (
            
