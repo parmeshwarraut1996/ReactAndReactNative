@@ -9,9 +9,12 @@ class Notes extends Component {
 
         }
         this.openCard = this.openCard.bind(this);
+       
     }
+  
+
     async openCard() {
-        await this.setState({ open: true })
+        await this.setState({ open: !this.state.open })
         console.log("In open card");
         console.log(this.state.open);
 
@@ -47,7 +50,7 @@ class Notes extends Component {
                 </Card>
             </div>
             : <div className="show">
-                <ShowCards />
+                <ShowCards changeCard={this.openCard} />
             </div>
 
 

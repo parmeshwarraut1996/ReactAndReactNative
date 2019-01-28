@@ -6,65 +6,26 @@ import CollaboratorComponent from './collaborator';
 import ImageComponent from './image';
 import ReminderComponent from './reminder';
 import MoreComponent from './more';
-import { insertNotes, getNotes } from '../../controller/DatabaseController';
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
-
-class ShowCards extends Component {
-
+class DisplayCard extends Component {
     constructor() {
         super();
         this.state = {
-            nextLine: true,
-            title: "",
-            description: "",
-            reminder: "",
-            collaborator: "",
-            color: "",
-            image: "",
-            archive: "",
-            pin: "",
-            label: [],
-            open: false
-
-
 
         }
-    }
-
-
-
-    addNotes() {
-        this.setState({
-
-            title: "",
-            description: "",
-        })
-        if (this.state.title !== "" && this.state.description !== "") {
-            insertNotes(this.state.title, this.state.description, this.state.reminder, this.state.collaborator, this.state.color, this.state.image, this.state.archive, this.state.pin, this.state.label);
-            this.props.changeCard();
-        }
-        else {
-            toast("Title And Description not empty", { position: toast.POSITION.TOP_CENTER });
-
-
-        }
-
-
-
     }
     render() {
         return (
 
-            <Card className="cardlist">
+            <Card className="ShowCard">
 
                 <div className="titleAndPin">
                     <div>
                         <InputBase className="titleNote"
-                            placeholder="Title"
+                            readOnly={ this.props.show.Title }
+                            defaultValue={this.props.show.Title}
                             onChange={(event) => this.setState({ title: event.target.value })}
-
+                            
                         >
 
                         </InputBase>
@@ -78,10 +39,12 @@ class ShowCards extends Component {
                 </div>
                 <div className="inp">
                     <InputBase className="in"
+                        readOnly={this.props.show.Description}
+                        defaultValue={this.props.show.Description}
                         type={File}
                         onChange={(event) => this.setState({ description: event.target.value })}
-                        placeholder="Take a note..."
-                        multiline={this.state.nextLine}>
+                        multiline={this.state.nextLine}
+                        readOnly={this.props.show}>
                     </InputBase>
                 </div>
 
@@ -106,27 +69,11 @@ class ShowCards extends Component {
                         <div>
                             <MoreComponent />
                         </div>
-
                     </Toolbar>
-                    <div className="closeButton">
-                        <Button
-
-                            onClick={(event) => this.addNotes(event)}>
-                            CLOSE
-                         </Button>
-
-
-                    </div>
-                    <ToastContainer />
                 </div>
-
-
-
-
             </Card>
-
 
         );
     }
 }
-export default ShowCards;
+export default DisplayCard;

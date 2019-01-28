@@ -3,7 +3,7 @@ import Firebase from '../Firebase';
 
 
 
-
+//insert user details in database
 export default async function getData(fname, lname, email, pass, cpass, contact) {
     var data = {
         FirstName: fname,
@@ -40,6 +40,7 @@ export default async function getData(fname, lname, email, pass, cpass, contact)
 
 }
 
+//check user id and password for authentication
 export async function checkLogin(username, password) {
 
     var arr = {
@@ -62,72 +63,113 @@ export async function checkLogin(username, password) {
     return data;
 
 }
+//Get user from database
 export function getUser(username) {
-    
 
-    Firebase.database.ref('users').orderByChild('Email_id').equalTo(username).on("value",snap=>{
-       
-        
-        snap.forEach(function(snap){
-            
-            var email=snap.child('Email_id').val();
-            var fname=snap.child('FirstName').val();
-            var lname=snap.child('LastName').val();
-            var key=snap.key;
 
-            localStorage.setItem("Email",email);
-            localStorage.setItem("userKey",key);
-            localStorage.setItem("FirstName",fname);
-            localStorage.setItem("LastName",lname);
+    Firebase.database.ref('users').orderByChild('Email_id').equalTo(username).on("value", snap => {
 
-            console.log("Key---",key);
-            console.log("Email-------",email);
-            console.log("Name",fname);
-            
-            
-   
+
+        snap.forEach(function (snap) {
+
+            var email = snap.child('Email_id').val();
+            var fname = snap.child('FirstName').val();
+            var lname = snap.child('LastName').val();
+            var key = snap.key;
+
+            localStorage.setItem("Email", email);
+            localStorage.setItem("userKey", key);
+            localStorage.setItem("FirstName", fname);
+            localStorage.setItem("LastName", lname);
+
+            console.log("Key---", key);
+            console.log("Email-------", email);
+            console.log("Name", fname);
+
+
+
         })
     });
-   
-    
-    
+
+
+
 }
-export function resetPass(username){
+//pasword reset if user forget password
+export function resetPass(username) {
 
-   
 
-    var arr={
-        username:username
+
+    var arr = {
+        username: username
     }
     console.log(arr);
-    
-    let data = Firebase.database.ref("users").orderByChild("Email_Id");
-    console.log('data-',data);
-    
 
-    if(data){
+    let data = Firebase.database.ref("users").orderByChild("Email_Id");
+    console.log('data-', data);
+
+
+    if (data) {
         var auth = Firebase.firebase.auth();
         var emailAddress = username;
 
-        var x=auth.sendPasswordResetEmail(emailAddress).then(function () {
-console.log("assddd",x);
+        var x = auth.sendPasswordResetEmail(emailAddress).then(function () {
+            console.log("assddd", x);
 
             // Email sent.
         }).catch(function (error) {
-            console.log("Reset password---",error.message);
-            data=error;
-        return error;
+            console.log("Reset password---", error.message);
+            data = error;
+            return error;
         });
 
-    }else{
-        console.log("aaassdadf"+data);
-        
-return data;
+    } else {
+        console.log("aaassdadf" + data);
+
+        return data;
     }
 
-   
-    return data;
-    
 
+    return data;
+
+
+
+}
+
+// add notes in database
+export function insertNotes(title, description, isReminder, isCollaborator, isColor, isImage, isArchived, isPinned, label) {
+    var arr = [];
+    arr.push(label);
+    var arrData = {
+        Title: title,
+        Description: description,
+        Reminder: isReminder,
+        Collaborator: isCollaborator,
+        Colors: isColor,
+        Images: isImage,
+        Archive: isArchived,
+        Pinned: isPinned,
+        userid: localStorage.getItem("userKey")
+
+    }
+    database.database.ref("/notes").push(arrData);
+    console.log("ttt", arrData);
+
+
+}
+
+
+export function getNotes(callback) {
+    console.log("getNotes");
+    
+    database.database.ref('/notes').orderByChild('userid').equalTo(localStorage.getItem("userKey")).on("value", function(snap) {
+
+        var value=snap.val();
+
+        return callback(value);
+       
+    })
+    
+   
+    
 
 }

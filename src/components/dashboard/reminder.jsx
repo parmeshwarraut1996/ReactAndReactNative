@@ -1,21 +1,42 @@
 import React, { Component } from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core';
+import ReminderNotes from './remindernotes.jsx';
 
-class ReminderComponent extends Component{
-    constructor(){
+class ReminderComponent extends Component {
+    constructor() {
         super();
-        this.state={
-
+        this.state = {
+            open: false,
+            anchorEl: null
         }
     }
-    render(){
-        return(
+    isReminder = event => {
+        const { currentTarget } = event;
+        this.setState({
+            open: !this.state.open,
+            anchorEl: currentTarget
+
+        })
+        console.log("in reminder");
+
+
+    }
+    render() {
+        return (
             <div>
-                <IconButton>
-                    <img src={require('../../assets/reminder.svg')}
-                        alt="" />
-                </IconButton>
+                <Tooltip title="Reminder" >
+                    <IconButton
+
+                        onClick={(event) => this.isReminder(event)}>
+                        <img src={require('../../assets/reminder.svg')}
+                            alt="" />
+
+                        <ReminderNotes openRem={this.state.open} openAnchor={this.state.anchorEl} />
+
+                    </IconButton>
+                </Tooltip>
             </div>
+
         );
     }
 }

@@ -11,7 +11,11 @@ import ForgetPaswordForm from './pages/forgetPaswordForm';
 
 
 
+
+
 class App extends Component {
+  
+
   render() {
     return (
       <div className="App">
@@ -21,15 +25,17 @@ class App extends Component {
             <Route path="/login" component={LoginForm} />
             <Route path="/registration" component={RegistrationForm} />
             <Route path="/dashboard" component={DashboardForm} />
-            <Route path="/forgetPassword" component={ForgetPaswordForm}/>
-           
-           
+            <Route path="/forgetPassword" component={ForgetPaswordForm} />
 
+
+             
           </div>
         </Router>
       </div>
     );
   }
 }
+
+
 
 export default App;
