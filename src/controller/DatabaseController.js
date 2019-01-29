@@ -136,7 +136,7 @@ export function resetPass(username) {
 }
 
 // add notes in database
-export function insertNotes(title, description, isReminder, isCollaborator, isColor, isImage, isArchived, isPinned, label) {
+export  async function insertNotes(title, description, isReminder, isCollaborator, isColor, isImage, isArchived, isPinned, label) {
     var arr = [];
     arr.push(label);
     var arrData = {
@@ -148,13 +148,26 @@ export function insertNotes(title, description, isReminder, isCollaborator, isCo
         Images: isImage,
         Archive: isArchived,
         Pinned: isPinned,
+        label:label,
         userid: localStorage.getItem("userKey")
 
     }
     database.database.ref("/notes").push(arrData);
     console.log("ttt", arrData);
+    if(label){
+        arr.map(async(noteData,index)=>{
+            var lblArrData={
+                name:noteData,
+                user:arrData.userid
+            }
+            var varLbl=await database.database.ref("/label").push(lblArrData);
+            var key=await varLbl.child("/label").push().getKey();
+            arr.label=key;
+        })
+    }
+   
 
-
+    await database.database.ref("/notes").push(arr);
 }
 
 
@@ -168,8 +181,30 @@ export function getNotes(callback) {
         return callback(value);
        
     })
-    
-   
-    
-
+ 
 }
+export function getLabel(callback){
+    database.database.ref('/label').orderByChild("user").equalTo(localStorage.getItem("userKey")).on("value",function(snap){
+        var value=snap.val();
+        console.log("valueeee--", snap.val());
+        return callback(value);
+        
+        
+    });
+}
+export function updateNotes(key,note){
+
+    database.database.ref("/notes").child(key).update(note);
+}
+export function editNotesData(Title,Description,note,key){
+   
+   console.log("notesssss--",note);
+    console.log("notesssss key--",key);
+   
+    note={
+        Title:Title,
+        Description:Description
+    }
+
+    updateNotes(key,note);
+} 

@@ -269,6 +269,22 @@ justify-content: space-between;
   padding:50px;
  
 }
+.addLabel{
+  display: flex;
+  flex-direction: column;
+}
+.chipLabel{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  
+}
+.sidelabel{
+  display: flex;
+  margin-top: 10px;
+  justify-content: flex-start;
+  margin-left: 10px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

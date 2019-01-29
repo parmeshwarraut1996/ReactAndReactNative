@@ -31,6 +31,8 @@ class ShowNotes extends Component {
         noteArr = Object.keys(this.state.notes).map((note) => {
             var key = note;
             var noteData = this.state.notes[key]
+            console.log("jnuhun",key);
+            
             return (
                 <div>
                     <DisplayCard show={noteData}

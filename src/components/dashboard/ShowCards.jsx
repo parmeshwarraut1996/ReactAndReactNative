@@ -6,7 +6,7 @@ import CollaboratorComponent from './collaborator';
 import ImageComponent from './image';
 import ReminderComponent from './reminder';
 import MoreComponent from './more';
-import { insertNotes, getNotes } from '../../controller/DatabaseController';
+import { insertNotes} from '../../controller/DatabaseController';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -31,6 +31,15 @@ class ShowCards extends Component {
 
 
         }
+        this.handleLabel=this.handleLabel.bind(this);
+    }
+    handleLabel(val){
+        console.log("value===",val);
+        
+        this.setState({
+            label:val
+        })
+
     }
 
 
@@ -84,6 +93,7 @@ class ShowCards extends Component {
                         multiline={this.state.nextLine}>
                     </InputBase>
                 </div>
+               
 
                 <div className="toolbarAndClose">
                     <Toolbar className="CardToolbar">
@@ -104,7 +114,7 @@ class ShowCards extends Component {
                         </div>
 
                         <div>
-                            <MoreComponent />
+                            <MoreComponent lblVal={this.handleLabel}/>
                         </div>
 
                     </Toolbar>

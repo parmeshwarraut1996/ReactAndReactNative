@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { SwipeableDrawer, List, createMuiTheme, MuiThemeProvider, MenuItem, Divider } from '@material-ui/core';
+import { SwipeableDrawer, List, createMuiTheme, MuiThemeProvider, MenuItem, Divider, Button } from '@material-ui/core';
+import { getLabel } from '../../controller/DatabaseController';
 
 const theme = createMuiTheme({
     overrides: {
@@ -18,28 +19,50 @@ class SideMenu extends Component {
     constructor() {
         super();
         this.state = ({
-            
+
             notes: false,
             reminder: false,
             editLabel: false,
             archive: false,
             trash: false,
             open: false,
+            lbl: []
 
 
         })
         //this.openNotes=this.openNotes.bind(this);
 
     }
+    componentDidMount() {
+        getLabel(LabelList => {
+            if (LabelList !== undefined && LabelList !== "") {
+                this.setState({
+                    lbl: LabelList
+                })
 
 
-     openNotes() {
-         this.setState({
-            notes:true,
-            reminder:false,
-            editLabel:false,
-            archive:false,
-            trash:false,
+            }
+            else {
+                this.setState({
+                    lbl: []
+                })
+            }
+            console.log("get   label list --", LabelList);
+
+        })
+
+
+
+    }
+
+
+    openNotes() {
+        this.setState({
+            notes: true,
+            reminder: false,
+            editLabel: false,
+            archive: false,
+            trash: false,
 
         })
         console.log("notes", this.state.notes);
@@ -98,6 +121,27 @@ class SideMenu extends Component {
     }
 
     render() {
+        var lblArray = [];
+        lblArray = Object.keys(this.state.lbl).map((varLabel) => {
+            var key = varLabel;
+            var labelData = this.state.lbl[key];
+
+            for (var i = 0; i < labelData.name.length; i++) {
+
+                return (
+                    <div className="sidelabel">
+                        <Button>
+                            <img src={require('../../assets/arrow.svg')}
+                                alt="" />
+                            {labelData.name[i]}
+                        </Button>
+                    </div>)
+
+            }
+            return null;
+        });
+
+
         let n = this.state.notes ? 'roundbutton' : 'menu'
         let r = this.state.reminder ? 'roundbutton' : 'menu';
         let e = this.state.editLabel ? 'roundbutton' : 'menu';
@@ -150,6 +194,7 @@ class SideMenu extends Component {
                                     LABELS
                             </label>
                             </div>
+                            {lblArray}
                             <MenuItem id={e}
                                 onClick={(event) => this.openEditLabel(event)}>
                                 <div>
