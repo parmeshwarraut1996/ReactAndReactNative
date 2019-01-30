@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import {Tooltip, AppBar, Toolbar, MuiThemeProvider, createMuiTheme, InputBase, Typography, IconButton } from "@material-ui/core";
 import SideMenu from "./SideDrawer";
 import AccountComponent from "./Account";
+import GridComponent from "./openGridComponent";
 
 const theme = createMuiTheme({
     overrides: {
@@ -25,10 +26,17 @@ class MyHeader extends Component {
             open:false,
 
         }
+        this.gridMethod=this.gridMethod.bind(this);
     }
     handleDrawer(){
         this.setState({open:!this.state.open});
     }
+    gridMethod(){
+        console.log("in Myheader");
+        
+        this.props.varGrid();
+    }
+
     render() {
         console.log("In myheader");
 
@@ -77,16 +85,14 @@ class MyHeader extends Component {
 
                             <div className="appicons">
                                 <div >
-                                    <IconButton >
+                                    <IconButton>
+                                     
                                         <img src={require('../../assets/refresh.svg')}
                                             alt="" />
                                     </IconButton>
                                 </div>
                                 <div >
-                                    <IconButton >
-                                        <img src={require('../../assets/grid.svg')}
-                                            alt="" />
-                                    </IconButton>
+                                   <GridComponent gridComp={this.gridMethod}/> 
                                 </div>
                                 <div >
                                     <IconButton >

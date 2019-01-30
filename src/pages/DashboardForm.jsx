@@ -8,6 +8,25 @@ import ShowNotes from '../components/dashboard/shownotes';
 
 
 class DashboardForm extends Component {
+    constructor(){
+        super();
+        this.state={
+            grid:false
+        }
+        this.openGrid=this.openGrid.bind(this);
+    }
+
+    openGrid(){
+        console.log("in dashboard");
+        
+        this.setState({
+            grid:!this.state.grid
+
+        })
+        console.log("grid val in dashboard---",this.state.grid);
+        
+        
+    }
     render() {
         console.log("in dashboard");
         
@@ -15,9 +34,9 @@ class DashboardForm extends Component {
             <div className="base">
                 
                 
-              <MyHeader/>
+              <MyHeader varGrid={this.openGrid}/>
             <Notes/>
-            <ShowNotes/>
+            <ShowNotes grid={this.state.grid}/>
             
             
             </div>

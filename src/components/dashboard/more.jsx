@@ -44,7 +44,8 @@ class MoreComponent extends Component {
                     onClick={(event)=>this.openMore(event)}>
                     <img src={require('../../assets/more.svg')}
                         alt="" />
-                        <LabelNote lbl={this.handleLabelArray} openM={this.state.open} openAnchor={this.state.anchorEl} lblNote={this.props.note}/>
+                        <LabelNote lbl={this.handleLabelArray} openM={this.state.open} openAnchor={this.state.anchorEl} lblNote={this.props.note}
+                        index={this.props.index}/>
                 </IconButton>
             </div>
         );

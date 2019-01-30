@@ -7,14 +7,16 @@ import ImageComponent from './image';
 import ReminderComponent from './reminder';
 import MoreComponent from './more';
 import EditNotes from './EditNote';
+import { pinnedNote } from '../../controller/DatabaseController';
 
-class DisplayCard extends Component {
+class  DisplayCard extends Component {
     constructor() {
         super();
         this.state = {
             edit:false
 
         }
+        this.handleEdit=this.handleEdit.bind(this);
     }
 editNote(){
     this.setState({
@@ -24,13 +26,22 @@ editNote(){
 handleEdit(){
     this.setState({edit:!this.state.edit})
 }
+isPinned(event,note,key){
+    pinnedNote(note,key);
+
+
+}
 
     render() {
+        console.log("this.props.grid",this.props.gridNote);
+        
+        const stl = this.props.gridNote ? 'ShowCard' : 'Showlist' 
         console.log("key--ll--llp",this.props.index);
         
         return (
+        
 
-            <Card className="ShowCard">
+            <Card className={stl}>
 
                 <div className="titleAndPin">
                     <div>
@@ -44,7 +55,8 @@ handleEdit(){
                         </InputBase>
                     </div>
                     <div>
-                        <IconButton>
+                        <IconButton
+                        onClick={(event)=>this.isPinned(event,this.props.show,this.props.index)}>
                             <img src={require('../../assets/pin.svg')}
                                 alt="" />
                         </IconButton>
@@ -87,11 +99,13 @@ handleEdit(){
                             <ImageComponent />
                         </div>
                         <div>
-                            <ArchiveComponent />
+                            <ArchiveComponent  
+                            show={this.props.show}
+                                index={this.props.index} />
                         </div>
 
                         <div>
-                            <MoreComponent note={this.props.show} />
+                            <MoreComponent note={this.props.show} index={this.props.index} />
                         </div>
 
                     </Toolbar>
@@ -101,6 +115,7 @@ handleEdit(){
                     close={this.handleEdit}/>
                 </div>
             </Card>
+        
 
         );
     }

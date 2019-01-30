@@ -125,6 +125,8 @@ class SideMenu extends Component {
         lblArray = Object.keys(this.state.lbl).map((varLabel) => {
             var key = varLabel;
             var labelData = this.state.lbl[key];
+            console.log("label  array data --",lblArray);
+            
 
             for (var i = 0; i < labelData.name.length; i++) {
 

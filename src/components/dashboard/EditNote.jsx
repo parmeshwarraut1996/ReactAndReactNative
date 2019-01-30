@@ -6,7 +6,7 @@ import CollaboratorComponent from './collaborator';
 import ImageComponent from './image';
 import ReminderComponent from './reminder';
 import MoreComponent from './more';
-import { editNotesData } from '../../controller/DatabaseController';
+import { editNotesData} from '../../controller/DatabaseController';
 
 
 class EditNotes extends Component {
@@ -15,20 +15,37 @@ class EditNotes extends Component {
         this.state = {
             title: this.props.show.Title,
             description:this.props.show.Description,
-            open:false
+            open:false,
+            noteUpdate:{
+                title: this.props.show.Title,
+                description: this.props.show.Description,
+
+            }
 
         }
     }
-editNotes(event,note,key){
+ editNotes(event,note,key){
     console.log("note-----",note);
     console.log("key------",key);
     this.props.close();
-    
+  console.log("title---",this.state.title);
+  
+    console.log("note update ----",this.state.noteUpdate);
    
-
+       note={
+           title:this.state.title,
+           description:this.state.description
+       }
+   
+     console.log("note pass to db -----", note)
     
-   editNotesData(this.state.title,this.state.description,note,key)
+     editNotesData(this.state.title, this.state.description,note,key);
+     
 }
+componentDidUpdate(){
+
+}
+
 
     render() {
         return (
@@ -68,14 +85,14 @@ editNotes(event,note,key){
                             label={Option}
                             onDelete={() => this}>
                         </Chip>
-                    )}
+                    )}this.props.show,this.props.index)
 
 
 
                 </div>
 
                 <div className="toolbarAndClose">
-                    <Toolbar className="CardToolbar">
+                    <Toolbar className="CardToolbar">this.props.show,this.props.index)
                         <div>
                             <ReminderComponent />
                         </div>

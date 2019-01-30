@@ -23,8 +23,8 @@ class ShowCards extends Component {
             collaborator: "",
             color: "",
             image: "",
-            archive: "",
-            pin: "",
+            archive: false,
+            pin: false,
             label: [],
             open: false
 

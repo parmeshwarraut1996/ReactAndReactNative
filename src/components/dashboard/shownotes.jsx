@@ -27,24 +27,71 @@ class ShowNotes extends Component {
     }
     render() {
         var noteArr = [];
+        var Arr = [];
+        var pinArr = [];
+        console.log("grid val in show notes--",this.props.grid);
+        
 
-        noteArr = Object.keys(this.state.notes).map((note) => {
+        noteArr = Object.keys(this.state.notes).map((note,index) => {
             var key = note;
             var noteData = this.state.notes[key]
-            console.log("jnuhun",key);
-            
+            if (noteData.Archive !== true&& noteData.Pinned === false){
+                
             return (
-                <div>
+                
                     <DisplayCard show={noteData}
                         index={key}
+                        gridNote={this.props.grid}
                     />
-                </div>
-            );
+            
+            );}
+            return noteArr;
+        })
+        Arr = Object.keys(this.state.notes).map((note, index) => {
+            var key = note;
+            var noteData = this.state.notes[key]
+            if (noteData.Archive !==false) {
+
+                return (
+                    <div>
+                        <DisplayCard show={noteData}
+                            index={key}
+                            gridNote={this.props.grid}
+                        />
+                    </div>
+                );
+            }
+            return Arr;
+        })
+
+        pinArr = Object.keys(this.state.notes).map((note, index) => {
+            var key = note;
+            var noteData = this.state.notes[key]
+            if (noteData.Pinned !== false) {
+
+                return (
+                    <div>
+                        <DisplayCard show={noteData}
+                            index={key}
+                            gridNote={this.props.grid}
+                        />
+                    </div>
+                );
+            }
+            return pinArr;
         })
 
         return (
             <div className="display">
                 {noteArr}
+                <div>
+                <h>Archived</h>
+                {Arr}
+                </div>
+                <div>
+                <h>Pinned</h>
+                {pinArr}
+                </div>
             </div>
         );
     }

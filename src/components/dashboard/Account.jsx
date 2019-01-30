@@ -59,7 +59,6 @@ class AccountComponent extends Component {
             <div>
                 <MuiThemeProvider theme={theme}>
                     <Avatar onClick={(event) => this.openPop(event)}>
-                    {upperCaseLetter}
 
                     </Avatar>
                 </MuiThemeProvider>
