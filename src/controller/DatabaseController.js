@@ -136,8 +136,11 @@ export function resetPass(username) {
 }
 
 // add notes in database
-export async function insertNotes(title, description, isReminder, isCollaborator, isColor, isImage, isArchived, isPinned, label) {
+export async function insertNotes(title, description, isReminder, isCollaborator, isColor, isImage, isArchived, isPinned,isTrash,label) {
     var arr = [];
+
+    console.log("reminder in database",isReminder);
+    
     arr.push(label);
     var arrData = {
         Title: title,
@@ -148,6 +151,7 @@ export async function insertNotes(title, description, isReminder, isCollaborator
         Images: isImage,
         Archive: isArchived,
         Pinned: isPinned,
+        Trash:isTrash,
         label: label,
         userid: localStorage.getItem("userKey")
 
@@ -216,8 +220,9 @@ export function editNotesData(Title, Description, note, key) {
 
 export function archiveNote(note, key) {
     if (note.Archive === false) {
-        note.Archive = true
-        note.Pinned=false
+        note.Archive = true;
+        note.Pinned=false;
+        note.Reminder=false;
        
 
     }
@@ -230,8 +235,9 @@ export function archiveNote(note, key) {
 }
 export function pinnedNote(note,key){
     if (note.Pinned===false) {
-        note.Pinned=true
-        note.Archive=false
+        note.Pinned=true;
+        note.Archive=false;
+        note.Reminder=false;
        
         
     } else {

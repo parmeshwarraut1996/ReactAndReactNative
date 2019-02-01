@@ -11,9 +11,28 @@ class DashboardForm extends Component {
     constructor(){
         super();
         this.state={
-            grid:false
+            grid:false,
+            archive:false,
+            reminder:false,
+            trash:false,
+            note:[]
         }
         this.openGrid=this.openGrid.bind(this);
+        this.showClickedNote=this.showClickedNote.bind(this);
+    }
+
+    showClickedNote(archive,reminder,trash,note){
+        this.setState({
+            archive:archive,
+            reminder:reminder,
+            trash:trash,
+            note:note
+        })
+
+        console.log("note in dashboard--",this.state.note);
+        
+
+
     }
 
     openGrid(){
@@ -34,9 +53,15 @@ class DashboardForm extends Component {
             <div className="base">
                 
                 
-              <MyHeader varGrid={this.openGrid}/>
+              <MyHeader varGrid={this.openGrid}
+                        varNote={this.showClickedNote}/>
             <Notes/>
-            <ShowNotes grid={this.state.grid}/>
+            <ShowNotes grid={this.state.grid}
+                    a={this.state.archive} 
+                    r={this.state.reminder}
+                    t={this.state.trash}
+                    n={this.state.note}/>
+                        
             
             
             </div>

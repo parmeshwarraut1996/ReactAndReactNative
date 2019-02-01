@@ -66,6 +66,8 @@ class SideMenu extends Component {
 
         })
         console.log("notes", this.state.notes);
+        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes);
+
 
 
 
@@ -79,6 +81,7 @@ class SideMenu extends Component {
             archive: false,
             trash: false,
         })
+        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes);
 
         console.log("reminder", this.state.reminder);
 
@@ -91,7 +94,6 @@ class SideMenu extends Component {
             archive: false,
             trash: false,
         })
-
         console.log("editLabel", this.state.editLabel);
 
     }
@@ -103,6 +105,7 @@ class SideMenu extends Component {
             archive: true,
             trash: false,
         })
+        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes);
         console.log("archive", this.state.archive);
 
 
@@ -115,6 +118,8 @@ class SideMenu extends Component {
             archive: false,
             trash: true,
         })
+        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes);
+
 
         console.log("trash", this.state.trash);
 
@@ -125,8 +130,8 @@ class SideMenu extends Component {
         lblArray = Object.keys(this.state.lbl).map((varLabel) => {
             var key = varLabel;
             var labelData = this.state.lbl[key];
-            console.log("label  array data --",lblArray);
-            
+            console.log("label  array data --", lblArray);
+
 
             for (var i = 0; i < labelData.name.length; i++) {
 

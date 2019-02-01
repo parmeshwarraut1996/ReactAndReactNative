@@ -1,5 +1,5 @@
 import  React, { Component } from "react";
-import { IconButton } from "@material-ui/core";
+import { IconButton,Grid } from "@material-ui/core";
 
 class GridComponent extends Component{
     constructor(){
@@ -20,6 +20,7 @@ class GridComponent extends Component{
     }
     render(){
         return(this.state.view?
+            
             <div>
                 <IconButton
                 onClick={(event)=>this.gridView(event)}>
@@ -28,7 +29,9 @@ class GridComponent extends Component{
                         alt="" />
                 </IconButton>
             </div>
-            : <div>
+            :
+            <Grid>
+            <div>
                 <IconButton
                     onClick={(event) => this.gridView(event)}>
 
@@ -36,6 +39,7 @@ class GridComponent extends Component{
                         alt="" />
                 </IconButton>
             </div>
+            </Grid> 
         );
     }
 }

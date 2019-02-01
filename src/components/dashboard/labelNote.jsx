@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Popper, Paper, MenuItem, TextField, Button } from '@material-ui/core';
+import { Card, Popper, Paper, MenuItem, TextField, Button, ClickAwayListener } from '@material-ui/core';
 import { deleteNotes } from '../../controller/DatabaseController';
 
 class LabelNote extends Component {
@@ -13,6 +13,11 @@ class LabelNote extends Component {
         }
         this.openLabel = this.openLabel.bind(this);
         this.addLabel = this.addLabel.bind(this);
+    }
+    closePop() {
+        this.setState({
+            open: !this.state.open
+        })
     }
     addLabel() {
         console.log("casdfs----", this.state.lblArr);
@@ -39,6 +44,8 @@ class LabelNote extends Component {
             <div>
                 <Card>
                     <Popper open={this.props.openM} anchorEl={this.props.openAnchor}>
+                        <ClickAwayListener onClickAway={(event) => this.closePop(event)}>
+
                         <Paper position="absolute">
                             {this.props.lblNote ?
                                 (
@@ -66,6 +73,7 @@ class LabelNote extends Component {
                                 )
                             }
                         </Paper>
+                        </ClickAwayListener>
                     </Popper>
                 </Card>
 
@@ -73,6 +81,7 @@ class LabelNote extends Component {
             : <div>
                 <Card>
                     <Popper open={this.state.show} anchorEl={this.props.openAnchor}>
+                        <ClickAwayListener onClickAway={(event) => this.closePop(event)}>
                         <Paper position="absolute">
                             <div className="addLabel">
                                 <TextField
@@ -84,6 +93,7 @@ class LabelNote extends Component {
                               
                             </div>
                         </Paper>
+                        </ClickAwayListener>
                     </Popper>
                 </Card>
 

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Card, InputBase, IconButton, Toolbar, Button } from '@material-ui/core';
+import { Card, InputBase, IconButton, Toolbar, Button, ClickAwayListener } from '@material-ui/core';
 import ArchiveComponent from './archive';
 import ColorComponent from './color';
 import CollaboratorComponent from './collaborator';
 import ImageComponent from './image';
 import ReminderComponent from './reminder';
 import MoreComponent from './more';
-import { insertNotes} from '../../controller/DatabaseController';
+import { insertNotes, pinnedNote} from '../../controller/DatabaseController';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -25,13 +25,20 @@ class ShowCards extends Component {
             image: "",
             archive: false,
             pin: false,
+            trash:false,
             label: [],
-            open: false
+            openCard: false
 
 
 
         }
         this.handleLabel=this.handleLabel.bind(this);
+        this.handleReminder=this.handleReminder.bind(this);
+    }
+    closePop() {
+        this.setState({
+            openCard: !this.state.openCard
+        })
     }
     handleLabel(val){
         console.log("value===",val);
@@ -42,6 +49,14 @@ class ShowCards extends Component {
 
     }
 
+        handleReminder(rem){
+            this.setState({
+                reminder:rem
+            })
+
+            console.log("rem---",rem);
+            
+        }
 
 
     addNotes() {
@@ -51,7 +66,9 @@ class ShowCards extends Component {
             description: "",
         })
         if (this.state.title !== "" && this.state.description !== "") {
-            insertNotes(this.state.title, this.state.description, this.state.reminder, this.state.collaborator, this.state.color, this.state.image, this.state.archive, this.state.pin, this.state.label);
+            insertNotes(this.state.title, this.state.description, this.state.reminder, this.state.collaborator, this.state.color, this.state.image, this.state.archive, this.state.pin,this.state.trash,this.state.label);
+          
+console.log("reminder----",this.state.reminder);
             this.props.changeCard();
         }
         else {
@@ -63,11 +80,18 @@ class ShowCards extends Component {
 
 
     }
+    isPinned(event, note, key) {
+        pinnedNote(note, key);
+        console.log("pin note in ");
+        
+
+
+    }
     render() {
         return (
 
             <Card className="cardlist">
-
+                <ClickAwayListener onClickAway={(event) => this.closePop(event)}>
                 <div className="titleAndPin">
                     <div>
                         <InputBase className="titleNote"
@@ -79,7 +103,8 @@ class ShowCards extends Component {
                         </InputBase>
                     </div>
                     <div>
-                        <IconButton>
+                        <IconButton
+                            onClick={(event) => this.isPinned(event, this.props.show, this.props.index)}>
                             <img src={require('../../assets/pin.svg')}
                                 alt="" />
                         </IconButton>
@@ -98,7 +123,7 @@ class ShowCards extends Component {
                 <div className="toolbarAndClose">
                     <Toolbar className="CardToolbar">
                         <div>
-                            <ReminderComponent />
+                            <ReminderComponent r={this.handleReminder}/>
                         </div>
                         <div>
                             <CollaboratorComponent />
@@ -131,7 +156,7 @@ class ShowCards extends Component {
                 </div>
 
 
-
+</ClickAwayListener>
 
             </Card>
 

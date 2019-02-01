@@ -110,7 +110,8 @@ class MyHeader extends Component {
                            
                         </Toolbar>
                     </AppBar>
-                    <SideMenu sideOpen={this.state.open} />
+                    <SideMenu sideOpen={this.state.open}
+                                sideNote={this.props.varNote} />
                   
                 </div>
             </MuiThemeProvider>

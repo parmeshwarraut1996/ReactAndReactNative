@@ -17,6 +17,8 @@ class  DisplayCard extends Component {
 
         }
         this.handleEdit=this.handleEdit.bind(this);
+        this.editNote=this.editNote.bind(this);
+        this.handleReminder=this.handleReminder.bind(this);
     }
 editNote(){
     this.setState({
@@ -31,6 +33,11 @@ isPinned(event,note,key){
 
 
 }
+    handleReminder(rem) {
+        this.setState({
+            reminder: rem
+        })
+    }
 
     render() {
         console.log("this.props.grid",this.props.gridNote);
@@ -73,6 +80,10 @@ isPinned(event,note,key){
                     </InputBase>
                 </div>
                 <div className="chipLabel">
+                <Chip
+                        label={this.props.show.Reminder}
+                        onDelete={()=>this}>
+                </Chip>
                     {this.props.show.label.map((Option)=>
                         <Chip
                            label={Option}
@@ -87,10 +98,11 @@ isPinned(event,note,key){
                 <div className="toolbarAndClose">
                     <Toolbar className="CardToolbar">
                         <div>
-                            <ReminderComponent />
+                            <ReminderComponent r={this.handleReminder}/>
                         </div>
                         <div>
-                            <CollaboratorComponent />
+                            <CollaboratorComponent show={this.props.show}
+                            index={this.props.index} />
                         </div>
                         <div>
                             <ColorComponent />
@@ -100,7 +112,7 @@ isPinned(event,note,key){
                         </div>
                         <div>
                             <ArchiveComponent  
-                            show={this.props.show}
+                               show={this.props.show}
                                 index={this.props.index} />
                         </div>
 

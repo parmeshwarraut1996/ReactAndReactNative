@@ -85,19 +85,20 @@ componentDidUpdate(){
                             label={Option}
                             onDelete={() => this}>
                         </Chip>
-                    )}this.props.show,this.props.index)
+                    )}
 
 
 
                 </div>
 
                 <div className="toolbarAndClose">
-                    <Toolbar className="CardToolbar">this.props.show,this.props.index)
+                    <Toolbar className="CardToolbar">
                         <div>
                             <ReminderComponent />
                         </div>
                         <div>
-                            <CollaboratorComponent />
+                            <CollaboratorComponent note={this.props.show}
+                            index={this.props.index} />
                         </div>
                         <div>
                             <ColorComponent />

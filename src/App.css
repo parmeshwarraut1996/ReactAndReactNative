@@ -173,6 +173,8 @@ background: transparent;
 }
  .paper{
    margin-top: 13px;
+   width: 300px;
+   
 
  }
  .Sign{
@@ -295,6 +297,27 @@ justify-content: space-between;
   margin-top: 10px;
   justify-content: flex-start;
   margin-left: 10px;
+}
+.CloseAndSave{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end
+}
+.collabmail{
+  display: flex;
+  flex-direction: row;
+}
+.NameAndMail{
+    display: flex;
+    flex-direction: column;
+
+}
+.SignCard{
+  width: 200px
+}
+.Count{
+  display: flex;
+  flex-direction: column
 }
 @keyframes App-logo-spin {
   from {
