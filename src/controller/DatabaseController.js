@@ -222,7 +222,7 @@ export function archiveNote(note, key) {
     if (note.Archive === false) {
         note.Archive = true;
         note.Pinned=false;
-        note.Reminder=false;
+        
        
 
     }
@@ -250,4 +250,15 @@ export function pinnedNote(note,key){
 export function deleteNotes(note,key){
     database.database.ref("/notes").child(key).remove();
 
+}
+export function colorNote(color,note,key){
+
+    note={
+        Colors:color
+    }
+    console.log("note in datbase---",note);
+    console.log("color in database==",color);
+    
+    
+    updateNotes(key,note);
 }

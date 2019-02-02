@@ -24,6 +24,8 @@ class CollaboratorNotes extends Component {
 
         this.openCollab = this.openCollab.bind(this);
     }
+   
+   
     openPop(){
          localStorage.getItem("Email");
 
@@ -46,6 +48,7 @@ class CollaboratorNotes extends Component {
         var upperCaseLetter = firstLetter.toLocaleUpperCase();
         return (
             <Dialog open={this.props.open} fullWidth>
+               
                 <div>
                     <h1>
                         Collaborator
@@ -84,6 +87,7 @@ class CollaboratorNotes extends Component {
                     <EditNotes show={this.props.show}
                         index={this.props.index} />
                 </div>
+             
             </Dialog>
         );
     }

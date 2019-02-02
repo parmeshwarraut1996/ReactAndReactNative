@@ -1,23 +1,31 @@
 import React, { Component } from 'react';
 import { getNotes } from '../../controller/DatabaseController';
 import DisplayCard from './displayCard';
+import { ClickAwayListener } from '@material-ui/core';
 
 class ShowNotes extends Component {
     constructor() {
         super();
-        this.state =
-            {
-                notes: []
+        this.state = {
 
-            }
+            notes: [],
+            open: false
+
+        }
+    }
+
+    closePop(){
+        this.setState({
+            open:!this.state.open
+        })
     }
     componentDidMount() {
         getNotes(NoteList => {
-            if (NoteList !== undefined && NoteList !== null) {
+            if (NoteList) {
                 this.setState({
                     notes: NoteList
                 })
-                console.log(" available note ", this.state.notes);
+                console.log(" available notelist ", NoteList.Title);
 
             }
 
@@ -30,6 +38,7 @@ class ShowNotes extends Component {
         })
     }
     render() {
+
         var noteArr = [];
         var Arr = [];
         var ArchiveArr = [];
@@ -37,10 +46,12 @@ class ShowNotes extends Component {
         if (this.props.n) {
             console.log("notes of props ", this.props.n);
 
-            noteArr = Object.keys(this.state.notes).map((note, index) => {
+            noteArr = Object.keys(this.state.notes).map((note) => {
                 var key = note;
-                var noteData = this.state.notes[key]
-                if (noteData.Title!=="" && noteData.Archive!==true && noteData.Pinned !==false && noteData!==true) {
+                var noteData = this.state.notes[key];
+                console.log("notedata---=", noteData);
+
+                if (noteData.Archive !== true && noteData.Pinned !== true) {
 
                     return (
 
@@ -52,10 +63,11 @@ class ShowNotes extends Component {
                     );
                 }
 
-                return noteArr;  })
-           
+                return noteArr;
+            })
+
         }
-        else if (this.props.a !== false) {
+        else if (this.props.a) {
             ArchiveArr = Object.keys(this.state.notes).map((note, index) => {
                 var key = note;
                 var noteData = this.state.notes[key]
@@ -77,7 +89,7 @@ class ShowNotes extends Component {
             noteArr = Object.keys(this.state.notes).map((note, index) => {
                 var key = note;
                 var noteData = this.state.notes[key];
-                if (noteData.Reminder !== ' ' && noteData.Archive !== true && noteData.Pinned !== true && noteData !== true) {
+                if (noteData.Reminder !== null) {
 
                     return (
                         <div>
@@ -136,15 +148,17 @@ class ShowNotes extends Component {
         }
         return (
             <div className="display">
-                {noteArr}
-                <div>
+                <ClickAwayListener onClickAway={(event) => this.closePop(event)}>
+                    {noteArr}
+                    <div>
 
-                    {ArchiveArr}
-                </div>
-                <div>
+                        {ArchiveArr}
+                    </div>
+                    <div>
 
-                    {Arr}
-                </div>
+                        {Arr}
+                    </div>
+                </ClickAwayListener>
             </div>
         );
     }

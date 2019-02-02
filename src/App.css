@@ -319,6 +319,28 @@ justify-content: space-between;
   display: flex;
   flex-direction: column
 }
+.ColorPaper{
+  width: 110px;
+  height: 80px;
+}
+.ColorCard{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-color: black;
+}
+.ColorIcon{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-color: black;
+  
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

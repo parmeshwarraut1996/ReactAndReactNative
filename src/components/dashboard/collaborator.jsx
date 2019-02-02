@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton} from '@material-ui/core';
 import CollaboratorNotes from './collaboratornotes';
 
 class CollaboratorComponent extends Component {
@@ -19,9 +19,13 @@ class CollaboratorComponent extends Component {
         })
 
     }
+    closePop(){
+        this.setState({open:!this.state.open})
+    }
     render() {
         return (
             <div>
+              
                 <IconButton onClick={(event)=>this.openCollaborator(event,this.props.show,this.props.index)}>
                     <img src={require('../../assets/collaborator.svg')}
                         alt="" />
@@ -29,6 +33,7 @@ class CollaboratorComponent extends Component {
                 <CollaboratorNotes open={this.state.open}
                             show={this.props.show}
                             index={this.props.index}/>
+              
             </div>
 
         );

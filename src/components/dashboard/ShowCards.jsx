@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, InputBase, IconButton, Toolbar, Button, ClickAwayListener } from '@material-ui/core';
+import { Card, InputBase, IconButton, Toolbar, Button } from '@material-ui/core';
 import ArchiveComponent from './archive';
 import ColorComponent from './color';
 import CollaboratorComponent from './collaborator';
@@ -27,24 +27,23 @@ class ShowCards extends Component {
             pin: false,
             trash:false,
             label: [],
-            openCard: false
+            openCard: false,
+            
 
 
 
         }
         this.handleLabel=this.handleLabel.bind(this);
         this.handleReminder=this.handleReminder.bind(this);
+      
     }
-    closePop() {
-        this.setState({
-            openCard: !this.state.openCard
-        })
-    }
+    
+    
     handleLabel(val){
         console.log("value===",val);
         
         this.setState({
-            label:val
+           label:val
         })
 
     }
@@ -89,11 +88,12 @@ console.log("reminder----",this.state.reminder);
     }
     render() {
         return (
-
+           
             <Card className="cardlist">
-                <ClickAwayListener onClickAway={(event) => this.closePop(event)}>
+              
                 <div className="titleAndPin">
                     <div>
+                        
                         <InputBase className="titleNote"
                             placeholder="Title"
                             onChange={(event) => this.setState({ title: event.target.value })}
@@ -152,13 +152,14 @@ console.log("reminder----",this.state.reminder);
 
 
                     </div>
+                    
                     <ToastContainer />
+                    
                 </div>
 
 
-</ClickAwayListener>
-
             </Card>
+
 
 
         );

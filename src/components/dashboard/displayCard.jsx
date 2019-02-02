@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, InputBase, IconButton, Toolbar, Chip} from '@material-ui/core';
+import { Card, InputBase, IconButton, Toolbar, Chip } from '@material-ui/core';
 import ArchiveComponent from './archive';
 import ColorComponent from './color';
 import CollaboratorComponent from './collaborator';
@@ -9,61 +9,83 @@ import MoreComponent from './more';
 import EditNotes from './EditNote';
 import { pinnedNote } from '../../controller/DatabaseController';
 
-class  DisplayCard extends Component {
+class DisplayCard extends Component {
     constructor() {
         super();
         this.state = {
-            edit:false
+            edit: false,
+            open: false,
+            label:[],
 
         }
-        this.handleEdit=this.handleEdit.bind(this);
-        this.editNote=this.editNote.bind(this);
-        this.handleReminder=this.handleReminder.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
+        this.editNote = this.editNote.bind(this);
+        this.handleReminder = this.handleReminder.bind(this);
+        this.openPop = this.openPop.bind(this);
     }
-editNote(){
-    this.setState({
-        edit:!this.state.edit
-    })
-}
-handleEdit(){
-    this.setState({edit:!this.state.edit})
-}
-isPinned(event,note,key){
-    pinnedNote(note,key);
+
+    handleLabel(val) {
+        console.log("value in display card===", val);
+
+        this.setState({
+            label: val
+        })
+
+    }
+  
+    openPop() {
+        this.setState({
+            open: !this.state.open
+        })
+    }
+    editNote() {
+        this.setState({
+            edit: !this.state.edit
+        })
+    }
+    handleEdit() {
+        this.setState({ edit: !this.state.edit })
+    }
+    isPinned(event, note, key) {
+        pinnedNote(note, key);
 
 
-}
+    }
     handleReminder(rem) {
+        console.log("reminder in display card ==", rem);
+
         this.setState({
             reminder: rem
         })
     }
 
     render() {
-        console.log("this.props.grid",this.props.gridNote);
-        
-        const stl = this.props.gridNote ? 'ShowCard' : 'Showlist' 
-        console.log("key--ll--llp",this.props.index);
-        
-        return (
-        
+        console.log("this.props.grid", this.props.gridNote);
 
-            <Card className={stl}>
+        const stl = this.props.gridNote ? 'ShowCard' : 'Showlist'
+        console.log("key--ll--llp", this.props.index);
+
+        return (
+
+
+            <Card className={stl}
+                style={{ backgroundColor: this.props.show.Colors }}>
+               
 
                 <div className="titleAndPin">
                     <div>
                         <InputBase className="titleNote"
-                            readOnly={ this.props.show.Title }
+                            readOnly={this.props.show.Title}
                             defaultValue={this.props.show.Title}
                             onChange={(event) => this.setState({ title: event.target.value })}
-                            onClick={(event)=>this.editNote(event)}
+                            onClick={(event) => this.editNote(event)}
                         >
 
                         </InputBase>
                     </div>
                     <div>
                         <IconButton
-                        onClick={(event)=>this.isPinned(event,this.props.show,this.props.index)}>
+                            onClick={(event) => this.isPinned(event, this.props.show, this.props.index)}>
                             <img src={require('../../assets/pin.svg')}
                                 alt="" />
                         </IconButton>
@@ -76,58 +98,62 @@ isPinned(event,note,key){
                         type={File}
                         onChange={(event) => this.setState({ description: event.target.value })}
                         multiline={this.state.nextLine}
-                        >
+                    >
                     </InputBase>
                 </div>
                 <div className="chipLabel">
-                <Chip
+                    <Chip
                         label={this.props.show.Reminder}
-                        onDelete={()=>this}>
-                </Chip>
-                    {this.props.show.label.map((Option)=>
+                        onDelete={() => this}>
+                    </Chip>
+                    {this.props.show.label.map((Option) =>
                         <Chip
-                           label={Option}
-                         onDelete={()=>this}>
-                        </Chip>    
+                            label={Option}
+                            onDelete={() => this}>
+                        </Chip>
                     )}
-                               
 
-                
+
+
                 </div>
 
                 <div className="toolbarAndClose">
                     <Toolbar className="CardToolbar">
                         <div>
-                            <ReminderComponent r={this.handleReminder}/>
+                            <ReminderComponent r={this.handleReminder} />
                         </div>
                         <div>
                             <CollaboratorComponent show={this.props.show}
-                            index={this.props.index} />
+                                index={this.props.index} />
                         </div>
                         <div>
-                            <ColorComponent />
+                            <ColorComponent clr={this.openPop}
+                                note={this.props.show}
+                                index={this.props.index} />
                         </div>
                         <div>
                             <ImageComponent />
                         </div>
                         <div>
-                            <ArchiveComponent  
-                               show={this.props.show}
+                            <ArchiveComponent
+                                show={this.props.show}
                                 index={this.props.index} />
                         </div>
 
                         <div>
-                            <MoreComponent note={this.props.show} index={this.props.index} />
+                            <MoreComponent note={this.props.show} index={this.props.index}
+                                lblVal={this.handleLabel} />
                         </div>
 
                     </Toolbar>
-                    <EditNotes  open={this.state.edit}
-                    show={this.props.show} 
-                    index={this.props.index}
-                    close={this.handleEdit}/>
+                    <EditNotes open={this.state.edit}
+                        show={this.props.show}
+                        index={this.props.index}
+                        close={this.handleEdit} />
                 </div>
+               
             </Card>
-        
+
 
         );
     }
