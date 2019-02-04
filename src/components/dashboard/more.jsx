@@ -19,6 +19,8 @@ class MoreComponent extends Component {
        console.log("in handle label",label);
        var varLabel=[];
        varLabel.push(label);
+       console.log("new label ==",varLabel);
+       
        await this.setState({
             lblArray:varLabel
         })

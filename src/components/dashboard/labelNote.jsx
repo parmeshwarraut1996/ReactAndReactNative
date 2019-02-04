@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Popper, Paper, MenuItem, TextField, Button, ClickAwayListener } from '@material-ui/core';
-import { deleteNotes } from '../../controller/DatabaseController';
+import { trashNote, addNewLabel } from '../../controller/DatabaseController';
 
 class LabelNote extends Component {
     constructor() {
@@ -19,21 +19,25 @@ class LabelNote extends Component {
             open: !this.state.open
         })
     }
-    addLabel() {
+    addLabel(event,note,key) {
         console.log("casdfs----", this.state.lblArr);
+        console.log("note with new label===",note);
+        console.log("key with new label====",key);
 
+        addNewLabel(this.state.lblArr,note,key)
         this.props.lbl(this.state.lblArr)
     }
     async openLabel() {
         await this.setState({ show: !this.state.show })
     }
     deleteNote(event,note,key){
+        event.preventDefault();
         console.log("note for delete  ", key);
 
         console.log("key for delete  ",key);
         
-
-        deleteNotes(note,key);
+trashNote(note,key);
+        //deleteNotes(note,key);
 
     }
 
@@ -87,7 +91,7 @@ class LabelNote extends Component {
                                 <TextField
                                     type="text"
                                     onChange={(event) => this.setState({ lblArr: event.target.value })} />
-                                <Button onClick={(event) => this.addLabel(event)}>
+                                    <Button onClick={(event) => this.addLabel(event, this.props.lblNote, this.props.index)}>
                                     Add label
                                </Button>
                               

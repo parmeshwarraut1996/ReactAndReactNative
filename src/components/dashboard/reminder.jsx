@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { IconButton, Card, Paper, MenuItem, TextField, Button, Popper } from '@material-ui/core';
+import { editReminder } from '../../controller/DatabaseController';
 
 
 class ReminderComponent extends Component {
@@ -39,12 +40,13 @@ class ReminderComponent extends Component {
 
 
     }
-    dateSave() {
+    dateSave(event,note,key) {
         var d = this.state.date + "," + this.state.time;
 
         this.setState({ reminder:d })
         this.props.r(this.state.reminder)
         console.log("date and time==", d);
+        editReminder(d,note,key)
 
     }
     render() {
@@ -94,7 +96,7 @@ class ReminderComponent extends Component {
                             </div>
                             <div>
                                 <Button
-                                    onClick={(event) => this.dateSave(event)}>
+                                    onClick={(event) => this.dateSave(event,this.props.note,this.props.index)}>
                                     save
                                 </Button>
                             </div>

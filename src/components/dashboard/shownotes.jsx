@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getNotes } from '../../controller/DatabaseController';
 import DisplayCard from './displayCard';
-import { ClickAwayListener } from '@material-ui/core';
+
 
 class ShowNotes extends Component {
     constructor() {
@@ -51,7 +51,7 @@ class ShowNotes extends Component {
                 var noteData = this.state.notes[key];
                 console.log("notedata---=", noteData);
 
-                if (noteData.Archive !== true && noteData.Pinned !== true) {
+                if (noteData.Archive !== true && noteData.Pinned !== true && noteData.Trash!==true) {
 
                     return (
 
@@ -127,6 +127,7 @@ class ShowNotes extends Component {
 
 
         }
+       
         else {
             Arr = Object.keys(this.state.notes).map((note, index) => {
                 var key = note;
@@ -148,7 +149,7 @@ class ShowNotes extends Component {
         }
         return (
             <div className="display">
-                <ClickAwayListener onClickAway={(event) => this.closePop(event)}>
+                
                     {noteArr}
                     <div>
 
@@ -158,7 +159,7 @@ class ShowNotes extends Component {
 
                         {Arr}
                     </div>
-                </ClickAwayListener>
+              
             </div>
         );
     }

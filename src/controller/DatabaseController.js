@@ -237,7 +237,7 @@ export function pinnedNote(note,key){
     if (note.Pinned===false) {
         note.Pinned=true;
         note.Archive=false;
-        note.Reminder=false;
+      
        
         
     } else {
@@ -261,4 +261,46 @@ export function colorNote(color,note,key){
     
     
     updateNotes(key,note);
+}
+export function trashNote(note,key){
+    if(note.Trash===false){
+        note.Trash=true
+        note.Pinned = false;
+        note.Archive = false;
+
+    }
+    else{
+        note.Trash=false
+    }
+    updateNotes(key,note);
+}
+export function editReminder(d,note,key){
+
+    console.log("reminder inm database==-990",d);
+    
+    note={
+        Reminder:d
+    }
+    console.log("reminder in dataaasdsa-",note);
+    
+    updateNotes(key,note);
+
+}
+
+
+export function addNewLabel(NewLabel,note,key){
+    console.log("label in database"+NewLabel);
+    note={
+        label: note.label.push(NewLabel)
+    }
+   
+   console.log("label in database",NewLabel);
+   
+    database.database.ref("/notes").child("label").push(note);
+    
+    
+
+    updateNotes(key,note);
+
+
 }

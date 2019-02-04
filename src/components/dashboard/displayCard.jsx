@@ -8,6 +8,7 @@ import ReminderComponent from './reminder';
 import MoreComponent from './more';
 import EditNotes from './EditNote';
 import { pinnedNote } from '../../controller/DatabaseController';
+import Delete from './deleteNote';
 
 class DisplayCard extends Component {
     constructor() {
@@ -15,13 +16,14 @@ class DisplayCard extends Component {
         this.state = {
             edit: false,
             open: false,
-            label:[],
+            label: [],
 
         }
         this.handleEdit = this.handleEdit.bind(this);
         this.editNote = this.editNote.bind(this);
         this.handleReminder = this.handleReminder.bind(this);
         this.openPop = this.openPop.bind(this);
+        this.handleLabel=this.handleLabel.bind(this);
     }
 
     handleLabel(val) {
@@ -32,7 +34,7 @@ class DisplayCard extends Component {
         })
 
     }
-  
+
     openPop() {
         this.setState({
             open: !this.state.open
@@ -70,7 +72,7 @@ class DisplayCard extends Component {
 
             <Card className={stl}
                 style={{ backgroundColor: this.props.show.Colors }}>
-               
+
 
                 <div className="titleAndPin">
                     <div>
@@ -102,25 +104,54 @@ class DisplayCard extends Component {
                     </InputBase>
                 </div>
                 <div className="chipLabel">
-                    <Chip
+                   {this.props.show.Reminder? 
+                   (<Chip
                         label={this.props.show.Reminder}
                         onDelete={() => this}>
                     </Chip>
-                    {this.props.show.label.map((Option) =>
-                        <Chip
-                            label={Option}
-                            onDelete={() => this}>
-                        </Chip>
-                    )}
+                    )
+                :(
+                    <div>
+
+                    </div>
+                ) }
+                    {this.props.show.label.length!==null ?
+                     (
+                        this.props.show.label.map((Option) =>
+                            <Chip
+                                label={Option}
+                                onDelete={() => this}>
+                            </Chip>
+                        )
+                    ):
+                    (
+                            <div>
+
+                            </div>
+
+                    )
+                    }
+                   
 
 
 
                 </div>
 
                 <div className="toolbarAndClose">
+                
+                {this.props.show.Trash?
+                (   
+                    <Delete note={this.props.show}
+                    index={this.props.index}/>
+
+                )
+                :(
+                    
                     <Toolbar className="CardToolbar">
                         <div>
-                            <ReminderComponent r={this.handleReminder} />
+                            <ReminderComponent r={this.handleReminder} 
+                            note={this.props.show}
+                            index={this.props.index}/>
                         </div>
                         <div>
                             <CollaboratorComponent show={this.props.show}
@@ -146,12 +177,13 @@ class DisplayCard extends Component {
                         </div>
 
                     </Toolbar>
+                        )}
                     <EditNotes open={this.state.edit}
                         show={this.props.show}
                         index={this.props.index}
                         close={this.handleEdit} />
                 </div>
-               
+                
             </Card>
 
 

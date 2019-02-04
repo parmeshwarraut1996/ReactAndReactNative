@@ -15,6 +15,7 @@ class EditNotes extends Component {
         this.state = {
             title: this.props.show.Title,
             description:this.props.show.Description,
+            NoteLabel:this.props.show.label,
             open:false,
             noteUpdate:{
                 title: this.props.show.Title,
@@ -42,9 +43,18 @@ class EditNotes extends Component {
      editNotesData(this.state.title, this.state.description,note,key);
      
 }
-componentDidUpdate(){
+
+deleteLabel(event,note,key,label){
+
+    console.log("note label ",note);
+    console.log("note label key--",key);
+    console.log("label----=-==",label);
+    
+    
+
 
 }
+
 
 
     render() {
@@ -83,7 +93,7 @@ componentDidUpdate(){
                     {this.props.show.label.map((Option) =>
                         <Chip
                             label={Option}
-                            onDelete={() => this}>
+                            onDelete={(event) => this.deleteLabel(event,this.props.show,this.props.index,this.props.show.label)}>
                         </Chip>
                     )}
 
