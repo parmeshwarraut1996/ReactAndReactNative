@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Popper, Paper, MenuItem, TextField, Button, ClickAwayListener } from '@material-ui/core';
-import { trashNote, addNewLabel } from '../../controller/DatabaseController';
+import { trashNote } from '../../controller/DatabaseController';
 
 class LabelNote extends Component {
     constructor() {
@@ -24,7 +24,7 @@ class LabelNote extends Component {
         console.log("note with new label===",note);
         console.log("key with new label====",key);
 
-        addNewLabel(this.state.lblArr,note,key)
+       
         this.props.lbl(this.state.lblArr)
     }
     async openLabel() {

@@ -14,9 +14,9 @@ class ShowNotes extends Component {
         }
     }
 
-    closePop(){
+    closePop() {
         this.setState({
-            open:!this.state.open
+            open: !this.state.open
         })
     }
     componentDidMount() {
@@ -51,7 +51,7 @@ class ShowNotes extends Component {
                 var noteData = this.state.notes[key];
                 console.log("notedata---=", noteData);
 
-                if (noteData.Archive !== true && noteData.Pinned !== true && noteData.Trash!==true) {
+                if ((noteData.Archive !== true  && noteData.Trash !== true)&&(noteData.Pinned!==false||noteData.Pinned!==true) ) {
 
                     return (
 
@@ -89,7 +89,7 @@ class ShowNotes extends Component {
             noteArr = Object.keys(this.state.notes).map((note, index) => {
                 var key = note;
                 var noteData = this.state.notes[key];
-                if (noteData.Reminder !== null) {
+                if (noteData.Reminder !== null && noteData.Archive !== true && noteData.Pinned !== true && noteData.Trash !== true) {
 
                     return (
                         <div>
@@ -127,8 +127,8 @@ class ShowNotes extends Component {
 
 
         }
-       
-        else {
+
+        else if (this.props.p) {
             Arr = Object.keys(this.state.notes).map((note, index) => {
                 var key = note;
                 var noteData = this.state.notes[key]
@@ -147,19 +147,22 @@ class ShowNotes extends Component {
                 return Arr;
             })
         }
+        else{
+
+        }
         return (
             <div className="display">
-                
-                    {noteArr}
-                    <div>
 
-                        {ArchiveArr}
-                    </div>
-                    <div>
+                {noteArr}
+                <div>
 
+                    {ArchiveArr}
+                </div>
+                <div>
+                    
                         {Arr}
-                    </div>
-              
+                </div>
+
             </div>
         );
     }

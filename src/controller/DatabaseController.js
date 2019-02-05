@@ -139,8 +139,7 @@ export function resetPass(username) {
 export async function insertNotes(title, description, isReminder, isCollaborator, isColor, isImage, isArchived, isPinned,isTrash,label) {
     var arr = [];
 
-    console.log("reminder in database",isReminder);
-    
+   
     arr.push(label);
     var arrData = {
         Title: title,
@@ -276,12 +275,14 @@ export function trashNote(note,key){
 }
 export function editReminder(d,note,key){
 
-    console.log("reminder inm database==-990",d);
+    console.log("reminder inm database==",d);
     
     note={
         Reminder:d
     }
     console.log("reminder in dataaasdsa-",note);
+    console.log("key of reminder=",key);
+    
     
     updateNotes(key,note);
 

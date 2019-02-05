@@ -6,7 +6,7 @@ import CollaboratorComponent from './collaborator';
 import ImageComponent from './image';
 import ReminderComponent from './reminder';
 import MoreComponent from './more';
-import { insertNotes, pinnedNote} from '../../controller/DatabaseController';
+import { insertNotes, pinnedNote } from '../../controller/DatabaseController';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -25,37 +25,37 @@ class ShowCards extends Component {
             image: "",
             archive: false,
             pin: false,
-            trash:false,
+            trash: false,
             label: [],
             openCard: false,
-            
+
 
 
 
         }
-        this.handleLabel=this.handleLabel.bind(this);
-        this.handleReminder=this.handleReminder.bind(this);
-      
+        this.handleLabel = this.handleLabel.bind(this);
+        this.handleReminder = this.handleReminder.bind(this);
+
     }
-    
-    
-    handleLabel(val){
-        console.log("value===",val);
-        
+
+
+    handleLabel(val) {
+        console.log("value===", val);
+
         this.setState({
-           label:val
+            label: val
         })
 
     }
 
-        handleReminder(rem){
-            this.setState({
-                reminder:rem
-            })
+    handleReminder(rem) {
+        this.setState({
+            reminder: rem
+        })
 
-            console.log("rem---",rem);
-            
-        }
+        console.log("rem---", rem);
+
+    }
 
 
     addNotes() {
@@ -65,9 +65,9 @@ class ShowCards extends Component {
             description: "",
         })
         if (this.state.title !== "" && this.state.description !== "") {
-            insertNotes(this.state.title, this.state.description, this.state.reminder, this.state.collaborator, this.state.color, this.state.image, this.state.archive, this.state.pin,this.state.trash,this.state.label);
-          
-console.log("reminder----",this.state.reminder);
+            insertNotes(this.state.title, this.state.description, this.state.reminder, this.state.collaborator, this.state.color, this.state.image, this.state.archive, this.state.pin, this.state.trash, this.state.label);
+
+            console.log("reminder----", this.state.reminder);
             this.props.changeCard();
         }
         else {
@@ -82,18 +82,18 @@ console.log("reminder----",this.state.reminder);
     isPinned(event, note, key) {
         pinnedNote(note, key);
         console.log("pin note in ");
-        
+
 
 
     }
     render() {
         return (
-           
+
             <Card className="cardlist">
-              
+
                 <div className="titleAndPin">
                     <div>
-                        
+
                         <InputBase className="titleNote"
                             placeholder="Title"
                             onChange={(event) => this.setState({ title: event.target.value })}
@@ -118,14 +118,16 @@ console.log("reminder----",this.state.reminder);
                         multiline={this.state.nextLine}>
                     </InputBase>
                 </div>
-               
+
 
                 <div className="toolbarAndClose">
                     <Toolbar className="CardToolbar">
                         <div>
-                            <ReminderComponent r={this.handleReminder}/>
+                            <ReminderComponent r={this.handleReminder}
+                                  note={this.props.show}
+                                  index={this.props.index} />
                         </div>
-                        <div>
+                        <div> 
                             <CollaboratorComponent />
                         </div>
                         <div>
@@ -139,7 +141,7 @@ console.log("reminder----",this.state.reminder);
                         </div>
 
                         <div>
-                            <MoreComponent lblVal={this.handleLabel}/>
+                            <MoreComponent lblVal={this.handleLabel} />
                         </div>
 
                     </Toolbar>
@@ -147,14 +149,14 @@ console.log("reminder----",this.state.reminder);
                         <Button
 
                             onClick={(event) => this.addNotes(event)}>
-                            CLOSE
+                            Close
                          </Button>
 
 
                     </div>
-                    
+
                     <ToastContainer />
-                    
+
                 </div>
 
 

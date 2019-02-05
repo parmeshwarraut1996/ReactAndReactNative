@@ -13,6 +13,8 @@ class ReminderComponent extends Component {
             time: "",
             reminder: ""
         }
+        this.dateSave=this.dateSave.bind(this);
+        this.dateSaveOfShowCard=this.dateSaveOfShowCard.bind(this);
     }
     handleChange(event) {
 
@@ -40,11 +42,24 @@ class ReminderComponent extends Component {
 
 
     }
+    dateSaveOfShowCard(event){
+        var d=this.state.date+","+this.state.time;
+         console.log("Date and time in showcard= "+d);
+        this.setState({ reminder: d })
+        this.props.r(this.state.reminder)
+         
+
+    }
     dateSave(event,note,key) {
+
+        console.log("key in reminder ",key);
+        console.log("note in reminder--",note);
+        
+        
         var d = this.state.date + "," + this.state.time;
 
         this.setState({ reminder:d })
-        this.props.r(this.state.reminder)
+       
         console.log("date and time==", d);
         editReminder(d,note,key)
 
@@ -64,6 +79,7 @@ class ReminderComponent extends Component {
                     <Popper open={this.state.open} anchorEl={this.state.anchorEl}
                         position='absolute' z-index='1'>
                         <Paper>
+
                             <div>
                                 <MenuItem>
                                     Later today
@@ -94,12 +110,22 @@ class ReminderComponent extends Component {
                                     onChange={this.handleTime}
                                 />
                             </div>
+                            {this.props.index?
                             <div>
                                 <Button
                                     onClick={(event) => this.dateSave(event,this.props.note,this.props.index)}>
                                     save
                                 </Button>
+
                             </div>
+                            :
+                            <div>
+                                    <Button
+                                        onClick={(event) => this.dateSaveOfShowCard(event)}>
+                                        save
+                                </Button>
+                            </div>
+                            }
                         </Paper>
 
                     </Popper>

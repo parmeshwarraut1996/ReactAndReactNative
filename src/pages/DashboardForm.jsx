@@ -15,18 +15,20 @@ class DashboardForm extends Component {
             archive:false,
             reminder:false,
             trash:false,
-            note:[]
+            note:[],
+            Pinned:false
         }
         this.openGrid=this.openGrid.bind(this);
         this.showClickedNote=this.showClickedNote.bind(this);
     }
 
-    showClickedNote(archive,reminder,trash,note){
+    showClickedNote(archive,reminder,trash,note,Pinned){
         this.setState({
             archive:archive,
             reminder:reminder,
             trash:trash,
-            note:note
+            note:note,
+            Pinned:Pinned
         })
 
         console.log("note in dashboard--",this.state.note);
@@ -60,7 +62,8 @@ class DashboardForm extends Component {
                     a={this.state.archive} 
                     r={this.state.reminder}
                     t={this.state.trash}
-                    n={this.state.note}/>
+                    n={this.state.note}
+                    p={this.state.Pinned}/>
                         
             
             

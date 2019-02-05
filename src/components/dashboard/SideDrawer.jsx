@@ -26,7 +26,8 @@ class SideMenu extends Component {
             archive: false,
             trash: false,
             open: false,
-            lbl: []
+            lbl: [],
+            Pinned: false
 
 
         })
@@ -63,10 +64,10 @@ class SideMenu extends Component {
             editLabel: false,
             archive: false,
             trash: false,
-
+            Pinned: true,
         })
         console.log("notes", this.state.notes);
-        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes);
+        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes,this.state.Pinned);
 
 
 
@@ -80,8 +81,9 @@ class SideMenu extends Component {
             editLabel: false,
             archive: false,
             trash: false,
+            Pinned: false
         })
-        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes);
+        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes,this.state.Pinned);
 
         console.log("reminder", this.state.reminder);
 
@@ -104,8 +106,9 @@ class SideMenu extends Component {
             editLabel: false,
             archive: true,
             trash: false,
+            Pinned: false
         })
-        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes);
+        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes,this.state.Pinned);
         console.log("archive", this.state.archive);
 
 
@@ -117,8 +120,9 @@ class SideMenu extends Component {
             editLabel: false,
             archive: false,
             trash: true,
+            Pinned: false
         })
-        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes);
+        this.props.sideNote(this.state.archive, this.state.reminder, this.state.trash, this.state.notes,this.state.Pinned);
 
 
         console.log("trash", this.state.trash);

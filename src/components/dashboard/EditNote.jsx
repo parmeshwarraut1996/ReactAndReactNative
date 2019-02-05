@@ -41,7 +41,7 @@ class EditNotes extends Component {
      console.log("note pass to db -----", note)
     
      editNotesData(this.state.title, this.state.description,note,key);
-     
+
 }
 
 deleteLabel(event,note,key,label){
@@ -90,12 +90,12 @@ deleteLabel(event,note,key,label){
                     </InputBase>
                 </div>
                 <div className="chipLabel">
-                    {this.props.show.label.map((Option) =>
+                  
                         <Chip
-                            label={Option}
+                            label={this.props.show.label}
                             onDelete={(event) => this.deleteLabel(event,this.props.show,this.props.index,this.props.show.label)}>
                         </Chip>
-                    )}
+                   
 
 
 
