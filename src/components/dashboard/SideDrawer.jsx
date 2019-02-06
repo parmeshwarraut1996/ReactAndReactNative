@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { SwipeableDrawer, List, createMuiTheme, MuiThemeProvider, MenuItem, Divider, Button } from '@material-ui/core';
+import { SwipeableDrawer, List, createMuiTheme, MuiThemeProvider, MenuItem, Divider} from '@material-ui/core';
 import { getLabel } from '../../controller/DatabaseController';
+
 
 const theme = createMuiTheme({
     overrides: {
@@ -135,17 +136,22 @@ class SideMenu extends Component {
             var key = varLabel;
             var labelData = this.state.lbl[key];
             console.log("label  array data --", lblArray);
-
+            console.log("number of labels =" + labelData.name.length);
+            console.log("key---==0=0",key);
+            
+            
 
             for (var i = 0; i < labelData.name.length; i++) {
 
                 return (
                     <div className="sidelabel">
-                        <Button>
+                    
+                        <MenuItem>
                             <img src={require('../../assets/arrow.svg')}
                                 alt="" />
                             {labelData.name[i]}
-                        </Button>
+                        </MenuItem>
+                     
                     </div>)
 
             }
@@ -161,11 +167,13 @@ class SideMenu extends Component {
 
 
         return (
+          
             <MuiThemeProvider theme={
                 theme
             }>
-
-                <SwipeableDrawer anchor={'left'}
+                
+                <SwipeableDrawer className="list"
+                 anchor={'left'}
                     variant='persistent'
                     open={
                         this.props.sideOpen
@@ -243,6 +251,7 @@ class SideMenu extends Component {
                     </List>
                 </SwipeableDrawer>
             </MuiThemeProvider>
+           
         );
     }
 

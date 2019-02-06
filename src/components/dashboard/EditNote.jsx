@@ -26,19 +26,16 @@ class EditNotes extends Component {
         }
     }
  editNotes(event,note,key){
-    console.log("note-----",note);
-    console.log("key------",key);
-    this.props.close();
-  console.log("title---",this.state.title);
   
-    console.log("note update ----",this.state.noteUpdate);
+    this.props.close();
+ 
    
        note={
            title:this.state.title,
            description:this.state.description
        }
    
-     console.log("note pass to db -----", note)
+    
     
      editNotesData(this.state.title, this.state.description,note,key);
 
@@ -46,11 +43,7 @@ class EditNotes extends Component {
 
 deleteLabel(event,note,key,label){
 
-    console.log("note label ",note);
-    console.log("note label key--",key);
-    console.log("label----=-==",label);
-    
-    
+      
 
 
 }

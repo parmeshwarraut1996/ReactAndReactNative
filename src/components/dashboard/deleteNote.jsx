@@ -29,23 +29,20 @@ class Delete extends Component {
     }
 
     deleteNote(event, note, key) {
-        console.log("note in delete ==", note);
-        console.log("key in delete==", key);
        
        deleteNotes(note,key);
     }
 
 
     restoreNotes(event, note, key) {
-        console.log("note in delete ==",note);
-        console.log("key in delete==",key);
+        
         
         
        
        trashNote(note,key);
     }
     render() {
-        console.log('in delete ', this.props.key)
+       
 
         return (
 

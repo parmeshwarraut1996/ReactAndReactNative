@@ -81,7 +81,7 @@ class ShowCards extends Component {
     }
     isPinned(event, note, key) {
         pinnedNote(note, key);
-        console.log("pin note in ");
+       
 
 
 

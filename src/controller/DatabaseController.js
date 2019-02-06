@@ -17,7 +17,7 @@ export default async function getData(fname, lname, email, pass, cpass, contact)
     console.log(fname);
 
     let check = await Firebase.firebase.auth().createUserWithEmailAndPassword(email, pass).then(() => {
-        console.log("Create user");
+       
         database.database.ref('/users').push(data);
 
         var user = Firebase.firebase.auth().currentUser;
@@ -36,7 +36,7 @@ export default async function getData(fname, lname, email, pass, cpass, contact)
     if (check) {
         return check;
     }
-    //  console.log("Error",check.message);
+   
 
 }
 
@@ -47,11 +47,10 @@ export async function checkLogin(username, password) {
         username: username,
         password: password
     }
-    console.log(arr);
-
+   console.log("username and apssword",arr);
+   
     let data = await Firebase.firebase.auth().signInWithEmailAndPassword(username, password).then(() => {
-        console.log("succefully login");
-        console.log('data1' + data);
+       
 
     })
         .catch(function (error) {
@@ -82,9 +81,6 @@ export function getUser(username) {
             localStorage.setItem("FirstName", fname);
             localStorage.setItem("LastName", lname);
 
-            console.log("Key---", key);
-            console.log("Email-------", email);
-            console.log("Name", fname);
 
 
 
@@ -102,19 +98,19 @@ export function resetPass(username) {
     var arr = {
         username: username
     }
-    console.log(arr);
+   
+console.log("username== ",arr);
 
     let data = Firebase.database.ref("users").orderByChild("Email_Id");
-    console.log('data-', data);
-
+   
 
     if (data) {
         var auth = Firebase.firebase.auth();
         var emailAddress = username;
 
         var x = auth.sendPasswordResetEmail(emailAddress).then(function () {
-            console.log("assddd", x);
-
+           console.log("Auth",x);
+           
             // Email sent.
         }).catch(function (error) {
             console.log("Reset password---", error.message);
@@ -164,13 +160,15 @@ export async function insertNotes(title, description, isReminder, isCollaborator
                 user: arrData.userid
             }
             var varLbl = await database.database.ref("/label").push(lblArrData);
-            var key = await varLbl.child("/label").push().getKey();
+           var key = await varLbl.child("/label").push().getKey();
             arr.label = key;
+            console.log("var label===",varLbl);
+            
         })
     }
 
 
-    await database.database.ref("/notes").push(arr);
+    //await database.database.ref("/notes").push(arr);
 }
 
 
@@ -255,9 +253,7 @@ export function colorNote(color,note,key){
     note={
         Colors:color
     }
-    console.log("note in datbase---",note);
-    console.log("color in database==",color);
-    
+   
     
     updateNotes(key,note);
 }
@@ -275,13 +271,12 @@ export function trashNote(note,key){
 }
 export function editReminder(d,note,key){
 
-    console.log("reminder inm database==",d);
+   
     
     note={
         Reminder:d
     }
-    console.log("reminder in dataaasdsa-",note);
-    console.log("key of reminder=",key);
+    
     
     
     updateNotes(key,note);
@@ -295,13 +290,32 @@ export function addNewLabel(NewLabel,note,key){
         label: note.label.push(NewLabel)
     }
    
-   console.log("label in database",NewLabel);
+   console.log("label in database======  ",NewLabel);
    
     database.database.ref("/notes").child("label").push(note);
-    
-    
+      updateNotes(key,note);
 
+}
+
+export function removeLabel(note,key,index){
+   
+    for (var i = 0; i < note.label.length; i++) {
+        if (index === i) {
+            note.label.splice(i, i + 1)
+
+        }
+    }
     updateNotes(key,note);
+    
 
+
+}
+export function removeReminder(Reminder,note,key){
+   
+    note={
+        Reminder:Reminder
+    }
+    
+    updateNotes(key, note);
 
 }

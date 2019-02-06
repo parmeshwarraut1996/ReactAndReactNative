@@ -13,8 +13,8 @@ class ReminderComponent extends Component {
             time: "",
             reminder: ""
         }
-        this.dateSave=this.dateSave.bind(this);
-        this.dateSaveOfShowCard=this.dateSaveOfShowCard.bind(this);
+        this.dateSave = this.dateSave.bind(this);
+        this.dateSaveOfShowCard = this.dateSaveOfShowCard.bind(this);
     }
     handleChange(event) {
 
@@ -42,26 +42,56 @@ class ReminderComponent extends Component {
 
 
     }
-    dateSaveOfShowCard(event){
-        var d=this.state.date+","+this.state.time;
-         console.log("Date and time in showcard= "+d);
-        this.setState({ reminder: d })
+    dateSaveOfShowCard(event) {
+        var d = this.state.date + "," + this.state.time;
+        console.log("Date and time in showcard= " + d);
+        this.setState({
+            reminder: d,
+            open: !this.state.open,
+        })
         this.props.r(this.state.reminder)
-         
+
 
     }
-    dateSave(event,note,key) {
+    today(event, note, key) {
+        this.setState({
+            reminder: 'Today : 20:00 PM',
+            open: !this.state.open,
+        })
+        editReminder(this.state.reminder, note, key);
 
-        console.log("key in reminder ",key);
-        console.log("note in reminder--",note);
-        
-        
+    }
+    tomorrow(event,note,key){
+        event.preventDefault();
+        this.setState({
+            reminder: 'Tomorrow : 08:00 AM',
+            
+        })
+        editReminder(this.state.reminder, note, key);
+        this.setState({
+            reminder: 'Tomorrow : 08:00 AM',
+            open:!this.state.open
+
+        })
+
+    }
+
+    dateSave(event, note, key) {
+
+        console.log("key in reminder ", key);
+        console.log("note in reminder--", note);
+
+
         var d = this.state.date + "," + this.state.time;
 
-        this.setState({ reminder:d })
-       
+        this.setState({
+            reminder: d,
+
+            open: !this.state.open,
+        })
+
         console.log("date and time==", d);
-        editReminder(d,note,key)
+        editReminder(d, note, key)
 
     }
     render() {
@@ -81,8 +111,8 @@ class ReminderComponent extends Component {
                         <Paper>
 
                             <div>
-                                <MenuItem>
-                                    Later today
+                                <MenuItem onClick={(event) => this.today(event, this.props.note, this.props.index)}>
+                                    Later today : 20:00 PM
                             </MenuItem>
                                 <div>
 
@@ -91,40 +121,40 @@ class ReminderComponent extends Component {
 
                             </div>
                             <div>
-                                <MenuItem>
-                                    Tomorrow
+                                <MenuItem onClick={(event) => this.tomorrow(event, this.props.note, this.props.index)}>
+                                    Tomorrow    :  08:00 AM
                                 </MenuItem>
 
                             </div>
-                            <div>
+                            <div className="Sign">
                                 <TextField
                                     type="date"
                                     onChange={this.handleChange.bind(this)} >
                                 </TextField>
                             </div>
 
-                            <div>
+                            <div className="Sign">
                                 <TextField
                                     type="time"
                                     placeholder="take time"
                                     onChange={this.handleTime}
                                 />
                             </div>
-                            {this.props.index?
-                            <div>
-                                <Button
-                                    onClick={(event) => this.dateSave(event,this.props.note,this.props.index)}>
-                                    save
+                            {this.props.index ?
+                                <div className="Sign">
+                                    <Button
+                                        onClick={(event) => this.dateSave(event, this.props.note, this.props.index)}>
+                                        save
                                 </Button>
 
-                            </div>
-                            :
-                            <div>
+                                </div>
+                                :
+                                <div>
                                     <Button
                                         onClick={(event) => this.dateSaveOfShowCard(event)}>
                                         save
                                 </Button>
-                            </div>
+                                </div>
                             }
                         </Paper>
 

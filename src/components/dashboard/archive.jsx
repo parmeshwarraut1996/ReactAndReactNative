@@ -11,8 +11,7 @@ class ArchiveComponent extends Component {
         }
     }
     isArchive(event,note,key){
-        console.log("note in archive  -- -=",note);
-        console.log("key in archive---",key);
+      
         archiveNote(note,key);
         
         

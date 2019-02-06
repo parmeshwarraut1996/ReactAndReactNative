@@ -86,6 +86,7 @@ class AccountComponent extends Component {
         var NoteCount = 0;
         var ArchiveCount = 0;
         var PinCount=0;
+        var TrashCount=0;
         console.log(" available note account ---", this.state.notes);
         noteArr = Object.keys(this.state.notes).map((note, index) => {
             var key = note;
@@ -121,6 +122,18 @@ class AccountComponent extends Component {
             if (noteData.Pinned !== false) {
 
                 PinCount=PinCount+1;
+            }
+
+            return noteArr;
+        });
+        noteArr = Object.keys(this.state.notes).map((note, index) => {
+            var key = note;
+            var noteData = this.state.notes[key];
+
+
+            if (noteData.Trash !== false) {
+
+                TrashCount = TrashCount + 1;
             }
 
             return noteArr;
@@ -181,6 +194,9 @@ class AccountComponent extends Component {
                                     </div>
                                     <div>
                                         Number of pinned note:{PinCount}
+                                    </div>
+                                    <div>
+                                        Number of Trash note:{TrashCount}
                                     </div>
                                 </div>
                                 <Divider/>

@@ -8,7 +8,8 @@ class MoreComponent extends Component {
         this.state = {
             open: false,
             anchorEl: null,
-            lblArray:[]
+            lblArray:[],
+            labl:'',
 
         }
         this.handleLabelArray=this.handleLabelArray.bind(this);
@@ -17,17 +18,17 @@ class MoreComponent extends Component {
    async handleLabelArray(label){
     
        console.log("in handle label",label);
-       var varLabel=[];
-       varLabel.push(label);
-       console.log("new label ==",varLabel);
+       this.state.lblArray.push(label);
+    //   console.log("new label ==",varLabel);
        
        await this.setState({
-            lblArray:varLabel
+            labl:this.state.lblArray
         })
        
         console.log("in lblArray"+this.state.lblArray);
         
-        this.props.lblVal(varLabel)
+        this.props.lblVal(this.state.labl)
+       
     }
 
 

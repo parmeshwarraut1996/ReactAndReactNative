@@ -19,30 +19,39 @@ class LabelNote extends Component {
             open: !this.state.open
         })
     }
-    addLabel(event,note,key) {
+    addLabel(event, note, key) {
         console.log("casdfs----", this.state.lblArr);
-        console.log("note with new label===",note);
-        console.log("key with new label====",key);
+        console.log("note with new label===", note);
+        console.log("key with new label====", key);
 
-       
-        this.props.lbl(this.state.lblArr)
+
+
+        this.props.lbl(this.state.lblArr);
+        this.setState({
+            show:!this.state.show
+        })
+        
     }
     async openLabel() {
-        await this.setState({ show: !this.state.show })
+        await this.setState({
+            show: !this.state.show,
+
+
+        })
     }
-    deleteNote(event,note,key){
+    deleteNote(event, note, key) {
         event.preventDefault();
         console.log("note for delete  ", key);
 
-        console.log("key for delete  ",key);
-        
-trashNote(note,key);
+        console.log("key for delete  ", key);
+
+        trashNote(note, key);
         //deleteNotes(note,key);
 
     }
 
     render() {
-        console.log("label----", this.props.lblNote);
+      
 
         return (!this.state.show ?
             <div>
@@ -50,33 +59,33 @@ trashNote(note,key);
                     <Popper open={this.props.openM} anchorEl={this.props.openAnchor}>
                         <ClickAwayListener onClickAway={(event) => this.closePop(event)}>
 
-                        <Paper position="absolute">
-                            {this.props.lblNote ?
-                                (
-                                    <div>
-                                        <MenuItem
-                                            onClick={(event) => this.openLabel(event)}>
+                            <Paper position="absolute">
+                                {this.props.lblNote ?
+                                    (
+                                        <div>
+                                            <MenuItem
+                                                onClick={(event) => this.openLabel(event)}>
 
-                                            Add label
+                                                Add label
                                 </MenuItem>
-                                        <MenuItem
-                                        onClick={(event)=>this.deleteNote(event,this.props.lblNote,this.props.index)}>
-                                           Delete note
+                                            <MenuItem
+                                                onClick={(event) => this.deleteNote(event, this.props.lblNote, this.props.index)}>
+                                                Delete note
                                 </MenuItem>
-                                      
-                                    </div>) : (
-                                    <div>
-                                        <MenuItem
-                                            onClick={(event) => this.openLabel(event)}>
 
-                                            Add label
-                                </MenuItem>
-                                      
+                                        </div>) : (
+                                        <div>
+                                            <MenuItem
+                                                onClick={(event) => this.openLabel(event)}>
 
-                                    </div>
-                                )
-                            }
-                        </Paper>
+                                                Add label
+                                </MenuItem>
+
+
+                                        </div>
+                                    )
+                                }
+                            </Paper>
                         </ClickAwayListener>
                     </Popper>
                 </Card>
@@ -85,19 +94,19 @@ trashNote(note,key);
             : <div>
                 <Card>
                     <Popper open={this.state.show} anchorEl={this.props.openAnchor}>
-                        <ClickAwayListener onClickAway={(event) => this.closePop(event)}>
-                        <Paper position="absolute">
-                            <div className="addLabel">
-                                <TextField
-                                    type="text"
-                                    onChange={(event) => this.setState({ lblArr: event.target.value })} />
+                      
+                            <Paper position="absolute">
+                                <div className="addLabel">
+                                    <TextField
+                                        type="text"
+                                        onChange={(event) => this.setState({ lblArr: event.target.value })} />
                                     <Button onClick={(event) => this.addLabel(event, this.props.lblNote, this.props.index)}>
-                                    Add label
+                                        Add label
                                </Button>
-                              
-                            </div>
-                        </Paper>
-                        </ClickAwayListener>
+
+                                </div>
+                            </Paper>
+                       
                     </Popper>
                 </Card>
 

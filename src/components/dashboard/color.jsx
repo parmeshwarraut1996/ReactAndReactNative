@@ -91,20 +91,18 @@ class ColorComponent extends Component {
 
     }
     setColoredNote(event,note,index){
-        console.log("color target value=",event.target.value);
+        
         
         var color=event.target.value;
         colorNote(color,note,index);
     }
     changeColor=event=>{
         this.props.note(event.target.value);
-        console.log("in change color==",event.target.value);
+   
         
     }
     render() {
 
-        console.log("note in color--",this.props.note);
-        console.log("index in color--",this.props.index);
         var NoteArray=ColorCodeArray.map((option)=>{
 
             return(

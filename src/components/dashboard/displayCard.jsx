@@ -7,7 +7,7 @@ import ImageComponent from './image';
 import ReminderComponent from './reminder';
 import MoreComponent from './more';
 import EditNotes from './EditNote';
-import { pinnedNote } from '../../controller/DatabaseController';
+import { pinnedNote, removeLabel, removeReminder } from '../../controller/DatabaseController';
 import Delete from './deleteNote';
 
 class DisplayCard extends Component {
@@ -17,6 +17,7 @@ class DisplayCard extends Component {
             edit: false,
             open: false,
             label: [],
+            reminder:""
 
         }
         this.handleEdit = this.handleEdit.bind(this);
@@ -27,8 +28,7 @@ class DisplayCard extends Component {
     }
 
     handleLabel(val) {
-        console.log("value in display card===", val);
-
+     
         this.setState({
             label: val
         })
@@ -54,18 +54,29 @@ class DisplayCard extends Component {
 
     }
     handleReminder(rem) {
-        console.log("reminder in display card ==", rem);
-
+       
         this.setState({
             reminder: rem
         })
     }
+    deleteReminder(note,key){
+      
+        this.setState({
+            reminder:""
+        })
+        removeReminder(this.state.reminder,note,key);
+    }
+    deleteLabel(note, key, index) {
+      
+        removeLabel(note, key, index);
+
+
+    }
 
     render() {
-        console.log("this.props.grid", this.props.gridNote);
 
         const stl = this.props.gridNote ? 'ShowCard' : 'Showlist'
-        console.log("key--ll--llp", this.props.index);
+     
 
         return (
 
@@ -85,15 +96,15 @@ class DisplayCard extends Component {
 
                         </InputBase>
                     </div>
-                    {this.props.show.Pinned?
-                    <div>
-                        <IconButton
-                            onClick={(event) => this.isPinned(event, this.props.show, this.props.index)}>
-                            <img src={require('../../assets/fillpin.svg')}
-                                alt="" />
-                        </IconButton>
-                    </div>
-                    :
+                    {this.props.show.Pinned ?
+                        <div>
+                            <IconButton
+                                onClick={(event) => this.isPinned(event, this.props.show, this.props.index)}>
+                                <img src={require('../../assets/fillpin.svg')}
+                                    alt="" />
+                            </IconButton>
+                        </div>
+                        :
                         <div>
                             <IconButton
                                 onClick={(event) => this.isPinned(event, this.props.show, this.props.index)}>
@@ -113,37 +124,34 @@ class DisplayCard extends Component {
                     </InputBase>
                 </div>
                 <div className="chipLabel">
-                    {this.props.show.Reminder !==null ?
-                        (<Chip
-                            label={this.props.show.Reminder}
-                            onDelete={() => this}>
-                        </Chip>
-                        )
+                    {this.props.show.Reminder ? (
+                        <div>
+                            <Chip
+                                label={this.props.show.Reminder}
+                                onDelete={() => this.deleteReminder(this.props.show,this.props.index)}>
+                            </Chip>
+                        </div>
+                    )
                         : (
                             <div>
 
                             </div>
                         )}
-                    {this.props.show.label?
-                        (
-                           
-                                <Chip
-                                   label={this.props.show.label}
-                                    onDelete={() => this}>
-                                </Chip>
-                            
-                        ) :
-                        (
-                            <div>
 
-                            </div>
+                    {this.props.show.label &&
+                        <div>
+                            {this.props.show.label.map((option, index) =>
 
-                        )
+                                <Chip style={{ backgroundColor: this.props.show.Colors }}
+                                    label={option}
+                                    onDelete={() => this.deleteLabel(this.props.show, this.props.index, index)}
+
+                                ></Chip>
+                            )
+                            }
+                        </div>
+
                     }
-
-
-
-
                 </div>
 
                 <div className="toolbarAndClose">

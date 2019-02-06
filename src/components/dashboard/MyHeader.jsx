@@ -2,7 +2,7 @@ import React, { Component } from "react"
 
 import {Tooltip, AppBar, Toolbar, MuiThemeProvider, createMuiTheme, InputBase, Typography, IconButton } from "@material-ui/core";
 import SideMenu from "./SideDrawer";
-import AccountComponent from "./Account";
+import AccountComponent from "./signinprofile";
 import GridComponent from "./openGridComponent";
 
 const theme = createMuiTheme({
