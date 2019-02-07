@@ -75,7 +75,7 @@ class DisplayCard extends Component {
 
     render() {
 
-        const stl = this.props.gridNote ? 'ShowCard' : 'Showlist'
+        const stl = this.props.gridNote ?  'Showlist' :'ShowCard'
      
 
         return (
@@ -150,8 +150,8 @@ class DisplayCard extends Component {
                             )
                             }
                         </div>
-
-                    }
+                
+                                   }
                 </div>
 
                 <div className="toolbarAndClose">

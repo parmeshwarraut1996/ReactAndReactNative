@@ -286,13 +286,20 @@ export function editReminder(d,note,key){
 
 export function addNewLabel(NewLabel,note,key){
     console.log("label in database"+NewLabel);
-    note={
-        label: note.label.push(NewLabel)
-    }
+
+ var a=note.label;
+ a.push(NewLabel);
+ //a.push(NewLabel);
+console.log('lsbef;f---',a);
+console.log("new label array in database",a);
+
+
+
+    
    
    console.log("label in database======  ",NewLabel);
    
-    database.database.ref("/notes").child("label").push(note);
+   
       updateNotes(key,note);
 
 }
@@ -301,7 +308,7 @@ export function removeLabel(note,key,index){
    
     for (var i = 0; i < note.label.length; i++) {
         if (index === i) {
-            note.label.splice(i, i + 1)
+            note.label.splice(i, i)
 
         }
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Popper, Paper, MenuItem, TextField, Button, ClickAwayListener } from '@material-ui/core';
-import { trashNote } from '../../controller/DatabaseController';
+import { trashNote, addNewLabel } from '../../controller/DatabaseController';
 
 class LabelNote extends Component {
     constructor() {
@@ -13,18 +13,25 @@ class LabelNote extends Component {
         }
         this.openLabel = this.openLabel.bind(this);
         this.addLabel = this.addLabel.bind(this);
+        this.addLabelOfShowCard=this.addLabelOfShowCard.bind(this);
     }
     closePop() {
         this.setState({
             open: !this.state.open
         })
     }
+    addLabelOfShowCard(event){
+        this.props.lbl(this.state.lblArr);
+        this.setState({
+            show: !this.state.show
+        })
+
+    }
     addLabel(event, note, key) {
-        console.log("casdfs----", this.state.lblArr);
         console.log("note with new label===", note);
         console.log("key with new label====", key);
 
-
+        addNewLabel(this.state.lblArr,note,key);
 
         this.props.lbl(this.state.lblArr);
         this.setState({
@@ -96,13 +103,20 @@ class LabelNote extends Component {
                     <Popper open={this.state.show} anchorEl={this.props.openAnchor}>
                       
                             <Paper position="absolute">
+                            
                                 <div className="addLabel">
                                     <TextField
                                         type="text"
                                         onChange={(event) => this.setState({ lblArr: event.target.value })} />
+                                   {this.props.index ?
                                     <Button onClick={(event) => this.addLabel(event, this.props.lblNote, this.props.index)}>
                                         Add label
                                </Button>
+                                   :
+                                    <Button onClick={(event) => this.addLabelOfShowCard(event)}>
+                                        Add label
+                               </Button>
+                                   }
 
                                 </div>
                             </Paper>

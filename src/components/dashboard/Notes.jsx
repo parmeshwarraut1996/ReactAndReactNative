@@ -29,7 +29,7 @@ class Notes extends Component {
                 >
                     <InputBase className="takeNote"
                         style={{ marginTop: '0px' }}
-                        onClick={(event) => this.openCard(event)}
+                        onClick={(event) => this.openCard()}
                         placeholder="Take a notes...">
 
                     </InputBase>

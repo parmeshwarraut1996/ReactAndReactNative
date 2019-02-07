@@ -146,9 +146,8 @@ class ShowCards extends Component {
 
                     </Toolbar>
                     <div className="closeButton">
-                        <Button
+                        <Button onClick={(event) => this.addNotes(event)}>
 
-                            onClick={(event) => this.addNotes(event)}>
                             Close
                          </Button>
 
