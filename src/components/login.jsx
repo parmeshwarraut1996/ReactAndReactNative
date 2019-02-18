@@ -79,9 +79,9 @@ class Login extends Component {
      * check username and password 
      */
     onSubmit = async event => {
-      
-      getUser(this.state.fields["username"]);
-     
+
+        getUser(this.state.fields["username"]);
+
         if (this.handleValidation()) {
             var a = await checkLogin(this.state.fields["username"], this.state.fields["password"]);
             if (a) {
@@ -124,7 +124,7 @@ class Login extends Component {
                         label="username"
                         type="text"
                         placeholder="Enter user name"
-                        style={{ marginTop: '10px' }}
+
                         onChange={this.handleChange.bind(this, "username")}
                         value={this.state.fields["username"]}
                         error={this.state.errors["username"]}
@@ -145,22 +145,25 @@ class Login extends Component {
                     <Fab
                         variant="extended"
                         color="primary"
-                        style={{ marginBottom: '10px' }}
                         onClick={event => this.onSubmit(event)}
                     >Login</Fab>
                     <br />
-                    <Fab
-                        variant="extended"
-                        color="primary"
-                        onClick={(event) => this.googleSignIn(event)} >
-                        <img src={require('../assets/download1.png')}
-                            alt="" />
-                    </Fab>
+
+                    <div>
+                        <img style={{ width: '200px', height: '80px' }}
+                            src={require('../assets/google.png')}
+                            alt=""
+                            onClick={(event) => this.googleSignIn(event)} />
+                    </div>
+                   
                     <br />
                     <ToastContainer />
-                    <Link to='/forgetPassword ' > Forgotten password? </Link>
+                    <div>
+                        <Link to='/forgetPassword ' > Forgotten password? </Link>
+                    </div>
                     <br />
-                    <Link to='/registration' > Click to Registration </Link>
+                    <Link to='/registration' > Click to Registration. </Link>
+                    <br />
                 </div>
             </div>
         );
