@@ -107,11 +107,9 @@ console.log("username== ",arr);
     if (data) {
         var auth = Firebase.firebase.auth();
         var emailAddress = username;
-
         var x = auth.sendPasswordResetEmail(emailAddress).then(function () {
            console.log("Auth",x);
-           
-            // Email sent.
+           // Email sent.
         }).catch(function (error) {
             console.log("Reset password---", error.message);
             data = error;

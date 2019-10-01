@@ -37,7 +37,7 @@ class SideMenu extends Component {
     }
     componentDidMount() {
         getLabel(LabelList => {
-            if (LabelList !== undefined && LabelList !== "") {
+            if (LabelList) {
                 this.setState({
                     lbl: LabelList
                 })

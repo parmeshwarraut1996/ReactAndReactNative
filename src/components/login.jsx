@@ -1,12 +1,24 @@
 import Firebase from '../Firebase'
 import React, { Component } from "react"
-import { TextField, Fab } from "@material-ui/core";
+import { TextField, Fab,createMuiTheme,MuiThemeProvider } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom'
 import { checkLogin, getUser } from '../controller/DatabaseController';
 import { withRouter } from 'react-router-dom'
 
+const theme=createMuiTheme({
+    overrides:{
+        MuiPaper:{
+            elevation1:{
+                5:{
+                    boxShadow:"0px 1px 3px 3px black"
+                }
+                
+            }
+        }
+    }
+})
 class Login extends Component {
     constructor() {
         super();
@@ -114,9 +126,9 @@ class Login extends Component {
     }
     render() {
         return (
-            <div>
-                <h1
-                    style={{ marginTop: '3px' }}>Login to FundooNotes</h1>
+            <MuiThemeProvider theme={theme}>
+            <div className="loginContainer">
+                <h1>Login to FundooNotes</h1>
 
                 <div className="text">
                     <br />
@@ -166,6 +178,7 @@ class Login extends Component {
                     <br />
                 </div>
             </div>
+    </MuiThemeProvider>
         );
     }
 

@@ -23,29 +23,47 @@ class MyHeader extends Component {
     constructor() {
         super();
         this.state = {
-            open:false,
-
-        }
+            open:false
+                   }
         this.gridMethod=this.gridMethod.bind(this);
     }
     handleDrawer(){
-        this.setState({open:!this.state.open});
+              this.setState({open:!this.state.open});
     }
     gridMethod(){
         console.log("in Myheader");
         
         this.props.varGrid();
     }
+      componentWillMount() {
+        const mediaQuery = window.matchMedia('(max-width: 768px)');
+        if (mediaQuery.matches) {
+         this.setState({
+             open:false
+         })
+        } else {
+            this.setState({
+                open:false
+            })
+        }
+        mediaQuery.addListener((mq) => {
+          if (mq.matches) {
+            this.setState({
+                open:false
+            })
+          } else {
+            this.setState({
+                open:false
+            })
+          }
+        });
+      }
+    
 
     render() {
-        console.log("In myheader");
-
         return (
             <MuiThemeProvider theme={theme}>
-
-                <div 
-                >
-
+               <div>
                     <AppBar position='fixed' color='white'>
                         <Toolbar>
                             <div className="menuAndlogo">
@@ -79,9 +97,7 @@ class MyHeader extends Component {
                                 <InputBase  
                                     placeholder="Search"
                                 />
-
-
-                            </div>
+                           </div>
 
                             <div className="appicons">
                                 <div >

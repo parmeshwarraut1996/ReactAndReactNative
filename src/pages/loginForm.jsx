@@ -13,8 +13,8 @@ class LoginForm extends Component {
             <div className="Form">
               
                 <Card className="card">
-                <img src={require('../assets/login.png')}
-                    alt="Login"/>
+                {/* <img src={require('../assets/login.png')}
+                    alt="Login"/> */}
                     <Login props={this.props}/>
                     
                 </Card>

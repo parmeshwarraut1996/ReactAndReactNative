@@ -1,6 +1,7 @@
 
 .App{
   text-align: center;
+  height: 100%;
 }
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -24,6 +25,8 @@
 .Form{
   display: flex;
   justify-content: center;
+  height: 100vh;
+  align-items: center;
 
 }
 .LoginCard{
@@ -57,21 +60,29 @@
   margin-bottom: 10px;
   
 }
+.loginContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  box-shadow: 0px 1px 3px 3px rgba(0,0,0,0.2),
+   0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+}
+
 .card{
   margin-top: 10px;
   align-content: space-between;
-  padding: 0px 20px 20px 20px;
   flex-direction: column;
-  height: 620px;
+  height: 500px;
   margin-bottom: 10px;
-
+  width: 450px;
+  
 }
 .text{
-  margin-top: 10px;
-  align-content: space-between;
-  padding: 0px 20px 20px;
+  width: 70%;
+  display: flex;
   flex-direction: column;
-  height: 580px;
     
 }
 .textReg{
@@ -345,6 +356,15 @@ justify-content: space-between;
   border-color: black;
   
 }
+/* @media (max-width: 780px) {
+  .list {
+      width: 90% !important; 
+      transform: translate(0px,100%) !important; 
+  }
+  .list.open {
+      transform: translate(0, 0px) !important;
+  }
+} */
 
 
 @keyframes App-logo-spin {
