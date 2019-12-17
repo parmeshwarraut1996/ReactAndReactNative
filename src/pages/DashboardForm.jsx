@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import {withRouter} from "react-router-dom"
 import MyHeader from '../components/dashboard/MyHeader';
 import Notes from '../components/dashboard/Notes';
@@ -31,9 +30,6 @@ class DashboardForm extends Component {
             Pinned:Pinned
         })
 
-        console.log("note in dashboard--",this.state.note);
-        
-
 
     }
 
@@ -44,8 +40,7 @@ class DashboardForm extends Component {
             grid:!this.state.grid
 
         })
-        console.log("grid val in dashboard---",this.state.grid);
-        
+     
         
     }
     render() {
