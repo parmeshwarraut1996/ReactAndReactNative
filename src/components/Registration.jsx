@@ -101,8 +101,8 @@ class Registration extends Component {
         }
         //set state for display error message
         this.setState({ errors: errors });
-        console.log("validation",formIsValid);
-        
+        console.log("validation", formIsValid);
+
         return formIsValid;
     }
 
@@ -160,7 +160,7 @@ class Registration extends Component {
                     <br />
 
 
-                    < TextField id="textfiled"
+                    < TextField 
                         label="First Name"
                         type="text"
                         placeholder="Enter First Name"
@@ -172,7 +172,7 @@ class Registration extends Component {
 
 
                     <br />
-                    < TextField id="textfiled"
+                    < TextField 
                         label="Last Name"
                         type="text"
                         placeholder="Enter Last Name"
@@ -186,7 +186,7 @@ class Registration extends Component {
                     <br />
 
 
-                    < TextField id="textfiled"
+                    < TextField 
                         label="Email Id"
                         type="text"
                         placeholder="Enter Email id "
@@ -197,7 +197,7 @@ class Registration extends Component {
 
                     <br />
 
-                    < TextField id="textfiled"
+                    < TextField 
                         label="Password"
                         type="password"
                         placeholder="Enter password"
@@ -207,7 +207,7 @@ class Registration extends Component {
                         helperText={this.state.errors["Password"]} />
                     <br />
 
-                    < TextField id="textfiled"
+                    < TextField 
                         label="Confirm Password"
                         type="password"
                         placeholder="Enter Confirm Password"
@@ -217,7 +217,7 @@ class Registration extends Component {
                         helperText={this.state.errors["Confirm Password"]} />
                     <br />
 
-                    < TextField id="textfiled"
+                    < TextField 
                         label="Contact Number"
                         type="text"
                         style={{ marginBottom: '50px' }}

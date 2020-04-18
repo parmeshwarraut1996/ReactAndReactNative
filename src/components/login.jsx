@@ -1,20 +1,20 @@
 import Firebase from '../Firebase'
 import React, { Component } from "react"
-import { TextField, Fab,createMuiTheme,MuiThemeProvider } from "@material-ui/core";
+import { TextField, Fab, createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { checkLogin, getUser } from '../controller/DatabaseController';
 import { withRouter } from 'react-router-dom'
 
-const theme=createMuiTheme({
-    overrides:{
-        MuiPaper:{
-            elevation1:{
-                5:{
-                    boxShadow:"0px 1px 3px 3px black"
+const theme = createMuiTheme({
+    overrides: {
+        MuiPaper: {
+            elevation1: {
+                5: {
+                    boxShadow: "0px 1px 3px 3px black"
                 }
-                
+
             }
         }
     }
@@ -124,61 +124,73 @@ class Login extends Component {
         fields[field] = e.target.value;
         this.setState({ fields });
     }
+    goResetPassword(){
+        this.props.history.push("/forgetPassword")
+    }
+    goSignUp(){
+        this.props.history.push("/registration")
+    }
     render() {
         return (
             <MuiThemeProvider theme={theme}>
-            <div className="loginContainer">
-                <h1>Login to FundooNotes</h1>
+                <div className="loginContainer">
+                    <h1>Login to FundooNotes</h1>
 
-                <div className="text">
-                    <br />
-                    <TextField id="textfiled"
-                        label="username"
-                        type="text"
-                        placeholder="Enter user name"
+                    <div className="text">
+                        <br />
+                        <TextField id="textfiled"
+                            label="username"
+                            type="text"
+                            placeholder="Enter user name"
+                            onChange={this.handleChange.bind(this, "username")}
+                            value={this.state.fields["username"]}
+                            error={this.state.errors["username"]}
+                            helperText={this.state.errors["username"]}
+                        />
+                        <br />
+                        <TextField id="textfield"
+                            label="password"
+                            type="password"
+                            placeholder="Enter password"
+                            onChange={this.handleChange.bind(this, "password")}
+                            value={this.state.fields["password"]}
+                            error={this.state.errors["password"]}
+                            helperText={this.state.errors["password"]}
+                            style={{ marginBottom: '20px' }}
+                        />
+                        <br />
+                        <Fab
+                            variant="extended"
+                            color="primary"
+                            onClick={event => this.onSubmit(event)}
+                        >Login</Fab>
+                        <br />
 
-                        onChange={this.handleChange.bind(this, "username")}
-                        value={this.state.fields["username"]}
-                        error={this.state.errors["username"]}
-                        helperText={this.state.errors["username"]}
-                    />
-                    <br />
-                    <TextField id="textfield"
-                        label="password"
-                        type="password"
-                        placeholder="Enter password"
-                        onChange={this.handleChange.bind(this, "password")}
-                        value={this.state.fields["password"]}
-                        error={this.state.errors["password"]}
-                        helperText={this.state.errors["password"]}
-                        style={{ marginBottom: '20px' }}
-                    />
-                    <br />
-                    <Fab
-                        variant="extended"
-                        color="primary"
-                        onClick={event => this.onSubmit(event)}
-                    >Login</Fab>
-                    <br />
+                        <div>
+                            <img style={{ width: '200px', height: '80px' }}
+                                src={require('../assets/google.png')}
+                                alt=""
+                                onClick={(event) => this.googleSignIn(event)} />
+                        </div>
 
-                    <div>
-                        <img style={{ width: '200px', height: '80px' }}
-                            src={require('../assets/google.png')}
-                            alt=""
-                            onClick={(event) => this.googleSignIn(event)} />
+                        <br />
+                        <ToastContainer />
+                        <div>
+                            <Fab
+                                variant="extended"
+                                color="primary"
+                                onClick={(event) => this.goResetPassword(event)}>Forgotten password?</Fab>
+                        </div>
+                        <br />
+                        <Fab
+                            variant="extended"
+                            color="primary"
+                            onClick={(event) => this.goSignUp(event)}>SignUp</Fab>
+
+                        <br />
                     </div>
-                   
-                    <br />
-                    <ToastContainer />
-                    <div>
-                        <Link to='/forgetPassword ' > Forgotten password? </Link>
-                    </div>
-                    <br />
-                    <Link to='/registration' > Click to Registration. </Link>
-                    <br />
                 </div>
-            </div>
-    </MuiThemeProvider>
+            </MuiThemeProvider>
         );
     }
 

@@ -139,22 +139,22 @@ class SideMenu extends Component {
 
   render() {
     var lblArray = [];
-    lblArray = Object.keys(this.state.lbl).map(varLabel => {
-      let key = varLabel;
-      let labelData = this.state.lbl[key];
+    // lblArray = Object.keys(this.state.lbl).map(varLabel => {
+    //   let key = varLabel;
+    //   let labelData = this.state.lbl[key];
 
-      for (let i = 0; i < labelData.name.length; i++) {
-        return (
-          <div className="sidelabel">
-            <MenuItem>
-              <img src={require("../../assets/arrow.svg")} alt="" />
-              {labelData.name[i]}
-            </MenuItem>
-          </div>
-        );
-      }
-      return null;
-    });
+    //   for (let i = 0; i < labelData.name.length; i++) {
+    //     return (
+    //       <div className="sidelabel">
+    //         <MenuItem >
+    //           <img src={require("../../assets/arrow.svg")} alt="" />
+    //           {labelData.name[i]}
+    //         </MenuItem>
+    //       </div>
+    //     );
+    //   }
+    //   return null;
+    // });
 
     let n = this.state.notes ? "roundbutton" : "menu";
     let r = this.state.reminder ? "roundbutton" : "menu";
@@ -193,7 +193,7 @@ class SideMenu extends Component {
               <div className="lbl">
                 <label>LABELS</label>
               </div>
-              {lblArray}
+              {lblArray===undefined||lblArray===null?<div></div>:lblArray}
               <MenuItem id={e} onClick={event => this.openEditLabel(event)}>
                 <div>
                   <img src={require("../../assets/editlabes.svg")} alt="" />

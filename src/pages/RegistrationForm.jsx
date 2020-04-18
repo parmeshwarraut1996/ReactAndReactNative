@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Card } from '@material-ui/core';
 import Registration from '../components/Registration';
-
+import {withRouter} from 'react-router-dom'
 
 class RegistrationForm extends Component {
 
@@ -25,4 +25,4 @@ class RegistrationForm extends Component {
 
     }
 }
-export default RegistrationForm;
+export default withRouter(RegistrationForm)`    `;

@@ -61,16 +61,16 @@ class ReminderComponent extends Component {
         editReminder(this.state.reminder, note, key);
 
     }
-    tomorrow(event,note,key){
+    tomorrow(event, note, key) {
         event.preventDefault();
         this.setState({
             reminder: 'Tomorrow : 08:00 AM',
-            
+
         })
         editReminder(this.state.reminder, note, key);
         this.setState({
             reminder: 'Tomorrow : 08:00 AM',
-            open:!this.state.open
+            open: !this.state.open
 
         })
 
@@ -97,28 +97,19 @@ class ReminderComponent extends Component {
     render() {
         return (
             <div>
-
                 <IconButton
-
                     onClick={(event) => this.isReminder(event)}>
                     <img src={require('../../assets/reminder.svg')}
                         alt="" />
-
                 </IconButton>
                 <Card>
                     <Popper open={this.state.open} anchorEl={this.state.anchorEl}
                         position='absolute' z-index='1'>
                         <Paper>
-
                             <div>
                                 <MenuItem onClick={(event) => this.today(event, this.props.note, this.props.index)}>
                                     Later today : 20:00 PM
-                            </MenuItem>
-                                <div>
-
-                                </div>
-
-
+                                </MenuItem>
                             </div>
                             <div>
                                 <MenuItem onClick={(event) => this.tomorrow(event, this.props.note, this.props.index)}>
